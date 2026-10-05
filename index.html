@@ -130,3 +130,30 @@
   <p id="giftMessage">Tap the gift.</p>
 
 </div>
+
+<style>
+  #giftScene {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    min-height: 100vh;
+    background: #0b1026;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .giftBox {
+    font-size: 100px;
+    cursor: pointer;
+    margin: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .giftBox:hover {
+    transform: scale(1.12);
+  }
+</style>
