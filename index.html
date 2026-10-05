@@ -495,3 +495,178 @@ from your ezuu ♡
 <audio id="music" loop>
 <source src="birthday-song.mp3" type="audio/mpeg">
 </audio>
+<script>
+
+const ids=[
+'intro',
+'gift',
+'story',
+'wish',
+'sent',
+'letter',
+'birthday'
+];
+
+function show(x){
+
+ids.forEach(id=>{
+
+document
+.getElementById(id)
+.classList
+.toggle('active',id===x);
+
+});
+
+document.querySelectorAll('.stars').forEach(s=>{
+
+if(!s.innerHTML){
+
+for(let i=0;i<45;i++){
+
+let e=document.createElement('i');
+
+e.style.left=Math.random()*100+'%';
+e.style.top=Math.random()*80+'%';
+
+s.appendChild(e);
+
+}
+
+}
+
+});
+
+}
+
+
+function music(){
+
+document
+.getElementById('music')
+.play()
+.catch(()=>{});
+
+}
+
+
+function openGift(){
+
+music();
+show('gift');
+
+}
+
+
+function openStory(){
+
+show('story');
+
+si=0;
+
+renderStory();
+
+}
+
+
+const story=[
+
+`Do you remember when we met?`,
+
+`It was somewhere in 2025... in that Messenger group called Extrovert + Introvert.`,
+
+`And for some reason, you decided that bullying Ezaz was going to be your first impression.`,
+
+`You were trying so hard to make him look like the bad guy while making yourself look like the innocent one.`,
+
+`And Ezaz? He mostly just sat there and took it.`,
+
+`But then... plot twist.`,
+
+`You sent him a friend request on Facebook.`,
+
+`And after that, you actually came and apologized for being mean to him.`,
+
+`Somehow, that apology turned into conversations...`,
+
+`...and those conversations turned into friendship.`,
+
+`And now look at you.`,
+
+`From trying to bully this idiot in a group chat... to becoming his little sister.`,
+
+`You don't even talk every single day. But whenever you two actually start talking... somehow three or four hours disappear.`,
+
+`You've shared family problems, future plans, life problems, random nonsense...`,
+
+`...and, of course, your legendary relationship cycle.`,
+
+`Break up. Complain to Ezaz. Somehow get back together again.`,
+
+`And then come back and roast Ezaz for being single.`,
+
+`Honestly, Marzia... you're a strange little creature.`,
+
+`But underneath all the roasting, fighting, and nonsense... you're someone Ezaz genuinely considers family.`,
+
+`You're somehow childish and surprisingly mature at the same time.`,
+
+`And even though Ezaz still doesn't remember your ridiculously long full name...`,
+
+`...he does remember one thing.`,
+
+`Somewhere along the way, you became an important part of his life.`,
+
+`So... that's how this weird friendship started.`,
+
+`But enough about the past.`,
+
+`Because today isn't about how you two met.`,
+
+`Today is about you.`,
+
+`Your 15th birthday.`
+
+];
+
+let si=0;
+
+
+function renderStory(){
+
+document.getElementById('storytext').textContent=
+story[si];
+
+document.getElementById('prog').textContent=
+(si+1)+' / '+story.length;
+
+document.getElementById('storybtn').textContent=
+si===story.length-1
+?'Continue to your wish →'
+:'Continue →';
+
+}
+
+
+function nextStory(){
+
+if(si<story.length-1){
+
+si++;
+
+renderStory();
+
+}else{
+
+show('wish');
+
+}
+
+}
+
+
+function sendWish(){
+
+show('sent');
+
+}
