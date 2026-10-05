@@ -165,7 +165,11 @@
   }
 
   function openGift() {
-    document.getElementById("giftMessage").textContent =
-      "You found it. But this is only the beginning...";
+  const gift = document.querySelector(".giftBox");
+
+  gift.classList.add("opened");
+
+  document.getElementById("giftMessage").textContent =
+    "Okay... you actually opened it.";
   }
 </script>
