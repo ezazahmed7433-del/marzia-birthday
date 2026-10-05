@@ -2285,6 +2285,124 @@ textarea:focus{
     0 0 0 3px rgba(255,255,255,.25),
     0 0 18px 6px rgba(255,255,255,.35);
 }
+/* =========================
+   IZU PANDA INTERRUPTION
+========================= */
+
+.panda-choice{
+  display:none;
+
+  flex-direction:column;
+  align-items:center;
+
+  width:min(92vw,360px);
+
+  margin:-5px auto 15px;
+
+  padding:14px 16px;
+
+  background:rgba(0,0,0,.45);
+
+  border:1px solid rgba(255,255,255,.22);
+
+  border-radius:18px;
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:0 15px 40px rgba(0,0,0,.3);
+
+  z-index:30;
+}
+
+.panda-choice.show{
+  display:flex;
+}
+
+.panda-dialogue{
+  color:#fff;
+
+  font-size:18px;
+
+  font-weight:800;
+
+  text-align:center;
+
+  line-height:1.4;
+
+  text-shadow:
+    0 0 8px rgba(255,255,255,.5);
+
+  min-height:28px;
+}
+
+.panda-choice-buttons{
+  display:flex;
+
+  gap:12px;
+
+  margin-top:12px;
+}
+
+.panda-choice-buttons .btn{
+  min-width:85px;
+
+  padding:9px 18px;
+
+  font-size:14px;
+}
+
+.panda-reply{
+  margin-top:10px;
+
+  color:#fff;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  text-align:center;
+
+  line-height:1.4;
+
+  opacity:0;
+
+  transition:.3s ease;
+}
+
+.panda-reply.show{
+  opacity:1;
+}
+
+
+/* cute angry panda */
+
+#pandaIzu.panda-angry{
+  animation:pandaAngry .12s infinite alternate;
+}
+
+@keyframes pandaAngry{
+
+  0%{
+    transform:translateX(-6px) rotate(-2deg);
+  }
+
+  50%{
+    transform:translateX(6px) rotate(2deg);
+  }
+
+  100%{
+    transform:translateX(-5px) rotate(-1deg);
+  }
+
+}
+
+#pandaIzu.panda-angry .eye{
+  transform:rotate(25deg) scaleY(.8);
+}
+
+#pandaIzu.panda-angry .mouth{
+  transform:scale(1.2);
+}
 </style>
 <script>
 
