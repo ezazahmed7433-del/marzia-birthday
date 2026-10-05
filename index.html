@@ -41,3 +41,75 @@ body {
   opacity: .55;
 }
   
+/* =========================
+   GENERAL
+========================= */
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px;
+  text-align: center;
+
+  animation: sceneIn .8s ease;
+}
+
+.scene.active {
+  display: flex;
+}
+
+h1 {
+  font-size: clamp(30px, 8vw, 48px);
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: clamp(25px, 7vw, 38px);
+  margin: 10px 0 20px;
+}
+
+p {
+  max-width: 650px;
+  line-height: 1.7;
+  font-size: 17px;
+  opacity: .9;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+
+  padding: 13px 24px;
+
+  background: #fff;
+  color: #151936;
+
+  font-family: Georgia, serif;
+  font-size: 16px;
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+button:hover {
+  transform: scale(1.06);
+}
+
+button:active {
+  transform: scale(.96);
+}
+
+.small-note {
+  font-size: 13px;
+  opacity: .55;
+  margin-top: 10px;
+}
+  
