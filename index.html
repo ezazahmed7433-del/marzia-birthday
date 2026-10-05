@@ -2317,3 +2317,418 @@ body{
 }
 
       </style>
+<script>
+
+/* =====================================================
+   STAR BACKGROUND
+===================================================== */
+
+const stars = document.getElementById("stars");
+
+for(let i = 0; i < 90; i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    star.style.animationDelay =
+        Math.random() * 3 + "s";
+
+    star.style.animationDuration =
+        1.5 + Math.random() * 3 + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* =====================================================
+   SCREEN CHANGER
+===================================================== */
+
+function showScreen(id){
+
+    document.querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
+    const next =
+        document.getElementById(id);
+
+    next.classList.add("active");
+}
+
+
+/* =====================================================
+   STEP 1
+===================================================== */
+
+const intro =
+    document.getElementById("intro");
+
+const introSpeech =
+    document.getElementById("introSpeech");
+
+let introStage = 0;
+
+intro.addEventListener("click", function(){
+
+    if(introStage === 0){
+
+        introStage = 1;
+
+        introSpeech.innerHTML =
+        "There is a gift here...<br>" +
+        "and it's for you.";
+
+        document.querySelector(".tap-text")
+            .textContent = "TAP AGAIN";
+
+        return;
+    }
+
+    showScreen("giftScreen");
+
+});
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+const gift =
+    document.getElementById("gift");
+
+let giftOpened = false;
+
+gift.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+    if(giftOpened) return;
+
+    giftOpened = true;
+
+    gift.classList.add("open");
+
+    setTimeout(() => {
+
+        showScreen("memory");
+
+        memoryIndex = 0;
+
+        updateMemory();
+
+    }, 1200);
+
+});
+
+
+/* =====================================================
+   STEP 2 MEMORY STORY
+===================================================== */
+
+const memoryStories = [
+
+    "Do you remember when we met?",
+
+    "It was somewhere in 2025...",
+
+    "In that Messenger group called<br><b>Extrovert + Introvert.</b>",
+
+    "And for some reason...<br>you decided that bullying Ezaz was going to be your first impression.",
+
+    "You were trying so hard to make him look like the bad guy while making yourself look like the innocent one.",
+
+    "And Ezaz?<br>He mostly just sat there and took it.",
+
+    "But then...<br><b>plot twist.</b>",
+
+    "You sent him a friend request on Facebook.",
+
+    "And after that, you actually came and apologized for being mean to him.",
+
+    "Somehow, that apology turned into conversations...",
+
+    "And those conversations turned into friendship.",
+
+    "And now look at you.",
+
+    "From trying to bully this idiot in a group chat...",
+
+    "...to becoming his little sister.",
+
+    "You don't even talk every single day.",
+
+    "But whenever you two actually start talking...",
+
+    "...somehow three or four hours disappear.",
+
+    "You've shared family problems, future plans, life problems, random nonsense...",
+
+    "...and, of course, your legendary relationship cycle.",
+
+    "Break up. Complain to Ezaz. Somehow get back together again.",
+
+    "And then come back and roast Ezaz for being single.",
+
+    "Honestly, Marzia... you're a strange little creature.",
+
+    "But underneath all the roasting, fighting, and nonsense...",
+
+    "...you're someone Ezaz genuinely considers family.",
+
+    "You're somehow childish and surprisingly mature at the same time.",
+
+    "And even though Ezaz still doesn't remember your ridiculously long full name...",
+
+    "...he does remember one thing.",
+
+    "Somewhere along the way, you became an important part of his life.",
+
+    "So... that's how this weird friendship started.",
+
+    "But enough about the past.",
+
+    "Because today isn't about how you two met.",
+
+    "Today is about you.",
+
+    "<b>Your 15th birthday.</b>"
+
+];
+
+let memoryIndex = 0;
+
+const memoryText =
+    document.getElementById("memoryText");
+
+const memoryCounter =
+    document.getElementById("memoryCounter");
+
+const memoryNext =
+    document.getElementById("memoryNext");
+
+
+function updateMemory(){
+
+    memoryText.style.opacity = "0";
+    memoryText.style.transform =
+        "rotate(-1deg) translateY(8px)";
+
+    setTimeout(() => {
+
+        memoryText.innerHTML =
+            memoryStories[memoryIndex];
+
+        memoryCounter.textContent =
+            (memoryIndex + 1) +
+            " / " +
+            memoryStories.length;
+
+        memoryText.style.opacity = "1";
+
+        memoryText.style.transform =
+            "rotate(-1deg) translateY(0)";
+
+    },250);
+
+}
+
+
+memoryNext.addEventListener("click",function(){
+
+    if(memoryIndex < memoryStories.length - 1){
+
+        memoryIndex++;
+
+        updateMemory();
+
+    }else{
+
+        showScreen("wishScreen");
+
+    }
+
+});
+
+
+/* =====================================================
+   WISH FORM
+===================================================== */
+
+const sendWish =
+    document.getElementById("sendWish");
+
+sendWish.addEventListener("click",function(){
+
+    /*
+       IMPORTANT:
+       Nothing is uploaded or sent.
+       The written wishes remain only in this
+       browser session and disappear when the
+       next screen loads.
+    */
+
+    const paper =
+        document.querySelector(".wish-paper");
+
+    paper.style.transition =
+        "1s ease";
+
+    paper.style.transform =
+        "translateY(-40px) rotate(-4deg) scale(.94)";
+
+    paper.style.opacity = "0";
+
+    setTimeout(() => {
+
+        showScreen("letterScreen");
+
+        window.scrollTo(0,0);
+
+    },1000);
+
+});
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+const letterScroll =
+    document.getElementById("letterScroll");
+
+const letterNext =
+    document.getElementById("letterNext");
+
+let letterFinished = false;
+
+letterNext.addEventListener("click",function(){
+
+    const atBottom =
+        letterScroll.scrollTop +
+        letterScroll.clientHeight >=
+        letterScroll.scrollHeight - 30;
+
+    if(!atBottom){
+
+        letterScroll.scrollBy({
+            top: window.innerHeight * .78,
+            behavior:"smooth"
+        });
+
+    }else{
+
+        if(!letterFinished){
+
+            letterFinished = true;
+
+            showScreen("birthday");
+
+            startCelebration();
+
+        }
+
+    }
+
+});
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function startCelebration(){
+
+    const container =
+        document.getElementById("confetti");
+
+    container.innerHTML = "";
+
+    const symbols = [
+        "✦",
+        "✧",
+        "•",
+        "◆",
+        "✿",
+        "★"
+    ];
+
+    for(let i = 0; i < 90; i++){
+
+        const piece =
+            document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+        piece.style.left =
+            Math.random() * 100 + "%";
+
+        piece.style.fontSize =
+            (8 + Math.random() * 12) + "px";
+
+        piece.style.animationDuration =
+            (2.5 + Math.random() * 3) + "s";
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 + "s";
+
+        container.appendChild(piece);
+
+    }
+
+}
+
+
+/* =====================================================
+   PREVENT ACCIDENTAL TEXT SELECTION
+===================================================== */
+
+document.addEventListener(
+    "contextmenu",
+    function(e){
+        e.preventDefault();
+    }
+);
+
+
+/* =====================================================
+   PHONE BACK BUTTON
+===================================================== */
+
+history.pushState(null,"",location.href);
+
+window.addEventListener("popstate",function(){
+
+    history.pushState(null,"",location.href);
+
+});
+
+
+/* =====================================================
+   FINAL INITIALIZATION
+===================================================== */
+
+showScreen("intro");
+
+</script>
+
+</body>
+</html>
