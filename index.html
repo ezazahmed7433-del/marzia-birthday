@@ -177,3 +177,84 @@ background:#111;color:#fff;
 padding:11px 22px;
 border-radius:25px
 }
+.birthday{
+background:radial-gradient(circle at 50% 25%,#333,#090909 60%,#000)
+}
+
+.final{
+position:relative;z-index:3;width:100%;height:100%;
+display:flex;flex-direction:column;
+justify-content:center;align-items:center;
+text-align:center
+}
+
+.photo{
+width:min(56vw,250px);
+height:min(56vw,250px);
+object-fit:cover;
+border:5px solid #fff;
+border-radius:50%;
+box-shadow:0 0 35px #777
+}
+
+.age{
+font-size:clamp(65px,17vw,110px);
+font-weight:bold;
+line-height:1
+}
+
+.bt{
+font-size:clamp(30px,8vw,62px);
+font-weight:bold;
+margin:15px 0 3px
+}
+
+.small{
+font-size:clamp(17px,4.5vw,24px)
+}
+
+.balloon{
+position:absolute;
+width:45px;height:60px;
+background:#eee;
+border-radius:50%;
+bottom:12%;
+animation:up 3s ease-in-out infinite
+}
+
+.b1{left:8%}
+.b2{right:8%;bottom:22%;animation-delay:1s}
+.b3{left:20%;bottom:35%;width:35px;height:48px;animation-delay:.5s}
+.b4{right:20%;bottom:38%;width:35px;height:48px;animation-delay:1.5s}
+
+@keyframes up{
+50%{transform:translateY(-18px)}
+}
+
+.fallback{font-size:70px}
+
+.conf{
+position:absolute;
+width:7px;height:13px;
+background:#fff;
+animation:fall 3s linear forwards
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(720deg)}
+}
+
+.celebrate{
+position:absolute;
+right:4%;bottom:0;
+transform:scale(.7);
+animation:dance .5s infinite alternate
+}
+
+@keyframes dance{
+to{transform:scale(.74) rotate(5deg)}
+}
+</style>
+</head>
+
+<body>
