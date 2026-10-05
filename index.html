@@ -2146,11 +2146,35 @@ textarea:focus{
 }
 
 .age-instruction{
-  margin-top:10px;
-  font-size:13px;
+  margin-top:14px;
+
+  font-size:clamp(18px,5vw,27px);
+
+  font-weight:900;
+
   color:#fff;
-  opacity:.9;
-  letter-spacing:.3px;
+
+  letter-spacing:1px;
+
+  text-transform:uppercase;
+
+  text-align:center;
+
+  text-shadow:
+    0 0 8px rgba(255,255,255,.7),
+    0 0 18px rgba(255,80,80,.7);
+
+  animation:instructionPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes instructionPulse{
+  0%,100%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(1.06);
+  }
 }
 
 .age-message{
