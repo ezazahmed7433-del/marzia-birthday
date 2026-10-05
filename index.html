@@ -2,2733 +2,470 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0,
-      maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>For Marzia ♡</title>
 
 <style>
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html,body{
-    width:100%;
-    min-height:100%;
-    overflow-x:hidden;
+  width:100%;
+  height:100%;
+  overflow:hidden;
 }
 
 body{
-    font-family:Georgia,"Times New Roman",serif;
-    background:#09070a;
-    color:#fff;
-    overflow:hidden;
+  font-family:Georgia,"Times New Roman",serif;
+  background:#080b13;
+  color:white;
 }
 
 /* =========================
-   GLOBAL SCREENS
+   SCREENS
 ========================= */
 
 .screen{
-    position:fixed;
-    inset:0;
-    width:100%;
-    height:100dvh;
-    display:none;
-    opacity:0;
-    transition:opacity 0.8s ease;
-    overflow:hidden;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+
+  transition:
+    opacity .8s ease,
+    visibility .8s ease;
 }
 
 .screen.active{
-    display:flex;
-    opacity:1;
-}
-
-.screen.fade-out{
-    opacity:0;
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
 }
 
 /* =========================
-   INTRO SCREEN
+   FLOWER GARDEN BACKGROUND
 ========================= */
 
-#intro{
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:
-        radial-gradient(circle at 50% 30%,#382518 0%,#17100d 35%,#070607 80%);
+.garden{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 30%,#273b58 0%,#111b2c 40%,#070b14 100%);
 }
 
-.stars{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
+.garden::before{
+  content:"";
+  position:absolute;
+  left:-10%;
+  bottom:-5%;
+  width:120%;
+  height:35%;
+  background:
+    radial-gradient(ellipse at center,#263c2c 0%,#122019 55%,transparent 72%);
+  opacity:.9;
 }
 
 .star{
-    position:absolute;
-    width:2px;
-    height:2px;
-    background:#fff;
-    border-radius:50%;
-    opacity:.5;
-    animation:twinkle 2.5s infinite alternate;
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:white;
+  opacity:.7;
+  animation:twinkle 2.5s infinite ease-in-out;
 }
 
 @keyframes twinkle{
-    from{opacity:.15;transform:scale(.7)}
-    to{opacity:1;transform:scale(1.4)}
+  0%,100%{opacity:.2;transform:scale(.7)}
+  50%{opacity:1;transform:scale(1.4)}
+}
+
+/* flowers */
+
+.flower{
+  position:absolute;
+  width:25px;
+  height:25px;
+  animation:sway 4s ease-in-out infinite;
+}
+
+.flower::before,
+.flower::after{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:18px;
+  border-radius:50%;
+  background:#ffd5e5;
+}
+
+.flower::before{
+  left:0;
+  top:3px;
+  transform:rotate(-35deg);
+}
+
+.flower::after{
+  right:0;
+  top:3px;
+  transform:rotate(35deg);
+}
+
+.flower span{
+  position:absolute;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ffd76d;
+  left:8px;
+  top:9px;
+  z-index:2;
+}
+
+.flower i{
+  position:absolute;
+  width:3px;
+  height:35px;
+  background:#55795b;
+  left:11px;
+  top:19px;
+  border-radius:5px;
+}
+
+@keyframes sway{
+  0%,100%{transform:rotate(-3deg)}
+  50%{transform:rotate(5deg)}
 }
 
 /* =========================
-   BROWN PANDA
+   CONTENT
 ========================= */
 
-.panda-wrap{
-    position:relative;
-    width:190px;
-    height:220px;
-    display:flex;
-    justify-content:center;
-    align-items:flex-end;
-    animation:pandaFloat 3s ease-in-out infinite;
-    z-index:3;
+.content{
+  position:relative;
+  z-index:20;
+
+  width:100%;
+  height:100%;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  padding:25px;
+  text-align:center;
+}
+
+.small-text{
+  font-size:14px;
+  opacity:.8;
+  letter-spacing:1px;
+}
+
+h1{
+  font-size:clamp(30px,9vw,60px);
+  margin:10px 0;
+}
+
+h2{
+  font-size:clamp(24px,7vw,42px);
+}
+
+p{
+  line-height:1.7;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+  border:none;
+  outline:none;
+  cursor:pointer;
+
+  margin-top:22px;
+  padding:13px 25px;
+
+  border-radius:30px;
+
+  background:rgba(255,255,255,.12);
+  color:white;
+
+  border:1px solid rgba(255,255,255,.3);
+
+  backdrop-filter:blur(10px);
+
+  font-family:inherit;
+  font-size:15px;
+
+  transition:.3s;
+}
+
+.btn:hover,
+.btn:active{
+  transform:scale(1.06);
+  background:rgba(255,255,255,.2);
+}
+
+/* =========================
+   PANDA
+========================= */
+
+.panda{
+  position:relative;
+  width:180px;
+  height:230px;
+  margin-bottom:20px;
+  animation:pandaFloat 3.5s ease-in-out infinite;
 }
 
 @keyframes pandaFloat{
-    0%,100%{transform:translateY(0) rotate(-1deg)}
-    50%{transform:translateY(-9px) rotate(1deg)}
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
 }
 
-.panda{
-    position:relative;
-    width:135px;
-    height:160px;
-    background:#9b6747;
-    border-radius:55% 55% 45% 45%;
-    box-shadow:
-        inset -10px -8px 0 rgba(65,35,20,.18),
-        0 18px 35px rgba(0,0,0,.45);
+/* ears */
+
+.panda .ear{
+  position:absolute;
+  width:48px;
+  height:48px;
+  background:#111;
+  border-radius:50%;
+  top:8px;
+  z-index:1;
 }
 
-.panda:before{
-    content:"";
-    position:absolute;
-    width:112px;
-    height:100px;
-    left:11px;
-    top:-62px;
-    background:#a96f4c;
-    border-radius:50%;
-    box-shadow:inset -7px -6px 0 rgba(60,30,15,.15);
+.panda .ear.left{left:28px}
+.panda .ear.right{right:28px}
+
+/* head */
+
+.panda .head{
+  position:absolute;
+  width:145px;
+  height:125px;
+  left:18px;
+  top:22px;
+
+  background:#fff;
+  border-radius:48% 48% 45% 45%;
+
+  border:4px solid #111;
+  z-index:2;
 }
 
-.panda:after{
-    content:"";
-    position:absolute;
-    width:28px;
-    height:28px;
-    left:6px;
-    top:-70px;
-    background:#70442d;
-    border-radius:50%;
-    box-shadow:78px 0 #70442d;
+/* eyes */
+
+.eye{
+  position:absolute;
+  width:34px;
+  height:42px;
+  background:#111;
+  border-radius:50%;
+  top:39px;
 }
 
-.panda-eye{
-    position:absolute;
-    width:22px;
-    height:27px;
-    top:-34px;
-    background:#3a2116;
-    border-radius:50%;
-    z-index:4;
+.eye.left{
+  left:25px;
+  transform:rotate(25deg);
 }
 
-.panda-eye.left{
-    left:31px;
-    transform:rotate(20deg);
+.eye.right{
+  right:25px;
+  transform:rotate(-25deg);
 }
 
-.panda-eye.right{
-    right:31px;
-    transform:rotate(-20deg);
+.eye::after{
+  content:"";
+  position:absolute;
+  width:9px;
+  height:12px;
+  background:#fff;
+  border-radius:50%;
+  top:7px;
+  left:8px;
 }
 
-.panda-eye:after{
-    content:"";
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:#fff;
-    border-radius:50%;
-    top:5px;
-    left:6px;
+/* blinking */
+
+.panda.blink .eye{
+  height:5px;
+  top:57px;
+  border-radius:50%;
+  transform:rotate(0);
 }
 
-.panda-nose{
-    position:absolute;
-    width:15px;
-    height:11px;
-    background:#25130e;
-    border-radius:50%;
-    top:-10px;
-    left:60px;
-    z-index:5;
+.panda.blink .eye::after{
+  display:none;
 }
 
-.panda-mouth{
-    position:absolute;
-    width:28px;
-    height:14px;
-    border-bottom:3px solid #351d14;
-    border-radius:50%;
-    left:54px;
-    top:2px;
-    z-index:5;
+/* nose */
+
+.nose{
+  position:absolute;
+  width:17px;
+  height:12px;
+  background:#111;
+  border-radius:50%;
+  left:60px;
+  top:76px;
 }
 
-.panda-arm{
-    position:absolute;
-    width:58px;
-    height:25px;
-    background:#7d4d35;
-    border-radius:30px;
-    top:66px;
-    z-index:4;
+/* mouth */
+
+.mouth{
+  position:absolute;
+  width:28px;
+  height:12px;
+  left:56px;
+  top:89px;
+
+  border-bottom:3px solid #111;
+  border-radius:0 0 50% 50%;
+
+  transition:.08s;
 }
 
-.panda-arm.left{
-    left:-35px;
-    transform:rotate(25deg);
+.panda.talking .mouth{
+  height:18px;
+  background:#111;
+  border-bottom:none;
+  border-radius:50%;
+  animation:talk .18s infinite alternate;
 }
 
-.panda-arm.right{
-    right:-35px;
-    transform:rotate(-25deg);
+@keyframes talk{
+  from{transform:scaleY(.5)}
+  to{transform:scaleY(1)}
 }
 
-.panda-foot{
-    position:absolute;
-    width:48px;
-    height:28px;
-    background:#70432f;
-    border-radius:50%;
-    bottom:-10px;
+/* body */
+
+.panda .body{
+  position:absolute;
+  width:105px;
+  height:105px;
+  left:38px;
+  top:130px;
+
+  background:#fff;
+  border:4px solid #111;
+  border-radius:48%;
+
+  z-index:1;
 }
 
-.panda-foot.left{
-    left:10px;
+.panda .arm{
+  position:absolute;
+  width:35px;
+  height:75px;
+  background:#111;
+  border-radius:40px;
+  top:145px;
+  z-index:0;
 }
 
-.panda-foot.right{
-    right:10px;
+.panda .arm.left{
+  left:22px;
+  transform:rotate(25deg);
 }
 
-/* =========================
-   PANDA SPEECH
-========================= */
-
-.speech{
-    position:relative;
-    z-index:5;
-    width:min(90%,420px);
-    min-height:100px;
-    margin-top:10px;
-    padding:22px 22px;
-    background:rgba(255,248,231,.96);
-    color:#33241c;
-    border-radius:22px;
-    box-shadow:0 12px 40px rgba(0,0,0,.4);
-    text-align:center;
-    font-size:18px;
-    line-height:1.55;
-    animation:speechIn .7s ease;
+.panda .arm.right{
+  right:22px;
+  transform:rotate(-25deg);
 }
 
-.speech:before{
-    content:"";
-    position:absolute;
-    top:-13px;
-    left:50%;
-    transform:translateX(-50%) rotate(45deg);
-    width:25px;
-    height:25px;
-    background:#fff8e7;
+.panda .leg{
+  position:absolute;
+  width:43px;
+  height:35px;
+  background:#111;
+  border-radius:50%;
+  bottom:0;
 }
 
-@keyframes speechIn{
-    from{
-        opacity:0;
-        transform:translateY(18px) scale(.95);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-.tap-text{
-    position:absolute;
-    bottom:25px;
-    color:#d7b891;
-    font-family:Arial,sans-serif;
-    font-size:12px;
-    letter-spacing:2px;
-    animation:pulse 1.8s infinite;
-    z-index:10;
-}
-
-@keyframes pulse{
-    0%,100%{opacity:.35}
-    50%{opacity:1}
-}
+.panda .leg.left{left:39px}
+.panda .leg.right{right:39px}
 
 /* =========================
    GIFT
 ========================= */
 
-.gift-area{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:25px;
-}
-
 .gift{
-    position:relative;
-    width:130px;
-    height:105px;
-    cursor:pointer;
-    animation:giftFloat 2s ease-in-out infinite;
+  position:relative;
+  width:110px;
+  height:95px;
+  margin:25px auto;
+  cursor:pointer;
+  animation:giftFloat 2s infinite ease-in-out;
 }
 
 @keyframes giftFloat{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-8px)}
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
 }
 
 .gift-box{
-    position:absolute;
-    bottom:0;
-    width:130px;
-    height:80px;
-    background:#a85c42;
-    border-radius:5px;
-    box-shadow:0 12px 25px rgba(0,0,0,.4);
+  position:absolute;
+  bottom:0;
+  width:110px;
+  height:70px;
+  background:#c98270;
+  border-radius:8px;
 }
 
-.gift-box:before{
-    content:"";
-    position:absolute;
-    width:18px;
-    height:80px;
-    left:56px;
-    background:#e2b36c;
-}
-
-.gift-box:after{
-    content:"";
-    position:absolute;
-    width:130px;
-    height:17px;
-    top:31px;
-    background:#e2b36c;
+.gift-box::after{
+  content:"";
+  position:absolute;
+  left:45px;
+  width:20px;
+  height:70px;
+  background:#f5d7a1;
 }
 
 .gift-lid{
-    position:absolute;
-    width:140px;
-    height:25px;
-    left:-5px;
-    top:5px;
-    background:#bd6b4b;
-    border-radius:5px;
-    z-index:3;
-    transition:.8s ease;
+  position:absolute;
+  top:10px;
+  left:-5px;
+  width:120px;
+  height:25px;
+  background:#d89480;
+  border-radius:7px;
+  z-index:3;
 }
 
-.gift-bow{
-    position:absolute;
-    top:-18px;
-    left:49px;
-    width:34px;
-    height:25px;
-    z-index:4;
-}
-
-.gift-bow:before,
-.gift-bow:after{
-    content:"";
-    position:absolute;
-    width:27px;
-    height:20px;
-    background:#e2b36c;
-    border-radius:50%;
-}
-
-.gift-bow:before{
-    left:-18px;
-    transform:rotate(25deg);
-}
-
-.gift-bow:after{
-    right:-18px;
-    transform:rotate(-25deg);
-}
-
-.gift.open .gift-lid{
-    transform:translateY(-55px) rotate(-10deg);
-    opacity:.7;
-}
-
-.gift.open{
-    animation:none;
+.ribbon{
+  position:absolute;
+  width:20px;
+  height:25px;
+  background:#f5d7a1;
+  top:0;
+  left:45px;
+  z-index:4;
 }
 
 /* =========================
-   MEMORY SCREEN
+   MUSIC
 ========================= */
 
-#memory{
-    background:
-        radial-gradient(circle at 50% 20%,#3a291e,#17120f 48%,#080708);
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+.music-note{
+  position:fixed;
+  top:16px;
+  right:16px;
+  z-index:100;
+  font-size:12px;
+  opacity:.6;
 }
-
-.memory-layout{
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.izu-tag{
-    position:absolute;
-    z-index:10;
-    top:50%;
-    left:calc(50% + 55px);
-    transform:translateY(-70px) rotate(5deg);
-    background:#efe1bd;
-    color:#3c291d;
-    padding:7px 12px;
-    font-family:Arial,sans-serif;
-    font-size:11px;
-    font-weight:bold;
-    letter-spacing:2px;
-    box-shadow:0 3px 10px #0008;
-}
-
-.blackboard{
-    position:relative;
-    width:min(91%,500px);
-    min-height:180px;
-    max-height:42vh;
-    padding:30px 25px;
-    background:
-        linear-gradient(145deg,#172019,#0d1510);
-    border:12px solid #704c32;
-    border-radius:6px;
-    box-shadow:
-        0 18px 50px #0009,
-        inset 0 0 30px #0008;
-    color:#f5ead2;
-    font-family:"Comic Sans MS",cursive;
-    text-align:center;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-    line-height:1.6;
-    transform:rotate(-1deg);
-}
-
-.blackboard:after{
-    content:"";
-    position:absolute;
-    inset:8px;
-    border:1px solid rgba(255,255,255,.08);
-    pointer-events:none;
-}
-
-.memory-panda{
-    margin-top:20px;
-    transform:scale(.68);
-    transform-origin:center;
-}
-
-.memory-counter{
-    position:absolute;
-    top:18px;
-    right:20px;
-    font-family:Arial,sans-serif;
-    font-size:11px;
-    color:#bda98f;
-    letter-spacing:2px;
-}
-
-/* =========================
-   BUTTON
-========================= */
-
-.next-btn{
-    margin-top:20px;
-    border:none;
-    padding:13px 28px;
-    border-radius:30px;
-    background:#c99461;
-    color:#20150f;
-    font-weight:bold;
-    font-family:Georgia,serif;
-    font-size:15px;
-    cursor:pointer;
-    box-shadow:0 7px 20px #0007;
-    transition:.2s;
-}
-
-.next-btn:active{
-    transform:scale(.94);
-}
-
-.hidden{
-    display:none!important;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-height:650px){
-    .panda-wrap{
-        transform:scale(.78);
-        margin-bottom:-25px;
-    }
-
-    .speech{
-        font-size:15px;
-        min-height:80px;
-    }
-
-    .blackboard{
-        min-height:145px;
-        font-size:16px;
-    }
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="stars" id="stars"></div>
-
-<!-- =========================
-     STEP 1
-========================= -->
-
-<section id="intro" class="screen active">
-
-    <div class="panda-wrap">
-        <div class="panda">
-            <div class="panda-eye left"></div>
-            <div class="panda-eye right"></div>
-            <div class="panda-nose"></div>
-            <div class="panda-mouth"></div>
-
-            <div class="panda-arm left"></div>
-            <div class="panda-arm right"></div>
-
-            <div class="panda-foot left"></div>
-            <div class="panda-foot right"></div>
-        </div>
-    </div>
-
-    <div class="speech" id="introSpeech">
-        Hi, Marzia!<br>
-        How are you doing?<br>
-        I hope you're doing good.
-    </div>
-
-    <div class="tap-text">
-        TAP ANYWHERE
-    </div>
-
-</section>
-
-
-<!-- GIFT SCREEN -->
-
-<section id="giftScreen" class="screen">
-
-    <div class="gift-area">
-
-        <div class="panda-wrap">
-            <div class="panda">
-                <div class="panda-eye left"></div>
-                <div class="panda-eye right"></div>
-                <div class="panda-nose"></div>
-                <div class="panda-mouth"></div>
-                <div class="panda-arm left"></div>
-                <div class="panda-arm right"></div>
-                <div class="panda-foot left"></div>
-                <div class="panda-foot right"></div>
-            </div>
-        </div>
-
-        <div class="speech">
-            Ezaz gave me a gift for you.<br>
-            He told me to hand it over to you.
-        </div>
-
-        <div class="gift" id="gift">
-
-            <div class="gift-lid"></div>
-
-            <div class="gift-bow"></div>
-
-            <div class="gift-box"></div>
-
-        </div>
-
-        <div style="font-size:12px;color:#c7aa89;letter-spacing:1px;">
-            TAP THE GIFT
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     STEP 2 MEMORY
-========================= -->
-
-<section id="memory" class="screen">
-
-    <div class="memory-counter" id="memoryCounter">
-        1 / 20
-    </div>
-
-    <div class="memory-layout">
-
-        <div class="blackboard" id="memoryText">
-            Do you remember when we met?
-        </div>
-
-        <div class="memory-panda">
-
-            <div class="panda-wrap">
-
-                <div class="panda">
-
-                    <div class="panda-eye left"></div>
-                    <div class="panda-eye right"></div>
-
-                    <div class="panda-nose"></div>
-                    <div class="panda-mouth"></div>
-
-                    <div class="panda-arm left"></div>
-                    <div class="panda-arm right"></div>
-
-                    <div class="panda-foot left"></div>
-                    <div class="panda-foot right"></div>
-
-                </div>
-
-                <div class="izu-tag">
-                    IZU
-                </div>
-
-            </div>
-
-        </div>
-
-        <button class="next-btn" id="memoryNext">
-            Continue
-        </button>
-
-    </div>
-
-  </section>
-<!-- =========================
-     STEP 3 — WISH FORM
-========================= -->
-
-<section id="wishScreen" class="screen">
-
-    <div class="wish-container">
-
-        <div class="wish-decoration top-left">✿</div>
-        <div class="wish-decoration top-right">❀</div>
-
-        <div class="wish-title">
-            A little space for you
-        </div>
-
-        <div class="wish-subtitle">
-            Write whatever you want.
-        </div>
-
-        <div class="wish-paper">
-
-            <div class="wish-intro">
-                Before we continue...
-                <br><br>
-                I want you to write something
-                only you know.
-            </div>
-
-            <label>
-                What do you want from your 15th year?
-            </label>
-
-            <textarea
-                placeholder="Write here..."
-                id="wish1"></textarea>
-
-            <label>
-                What do you want to change?
-            </label>
-
-            <textarea
-                placeholder="Anything you want to leave behind..."
-                id="wish2"></textarea>
-
-            <label>
-                What do you want to keep close?
-            </label>
-
-            <textarea
-                placeholder="People, memories, dreams..."
-                id="wish3"></textarea>
-
-            <label>
-                Is there anything you want to say
-                from your heart?
-            </label>
-
-            <textarea
-                placeholder="Write anything..."
-                id="wish4"></textarea>
-
-            <button class="send-wish" id="sendWish">
-                Send to Ezaz
-            </button>
-
-        </div>
-
-        <div class="wish-note">
-            This is your little private space.
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     VINTAGE LETTER
-========================= -->
-
-<section id="letterScreen" class="screen">
-
-    <div class="letter-shell">
-
-        <div class="flower flower-one">❀</div>
-        <div class="flower flower-two">✿</div>
-        <div class="flower flower-three">❁</div>
-        <div class="flower flower-four">✾</div>
-
-        <div class="letter-scroll" id="letterScroll">
-
-            <!-- PAGE 1 -->
-
-            <article class="letter-page">
-
-                <div class="page-number">
-                    I
-                </div>
-
-                <h1>
-                    A VERY LATE<br>
-                    BIRTHDAY GIFT
-                </h1>
-
-                <div class="divider">
-                    ❦
-                </div>
-
-                <p class="letter-name">
-                    Marzia,
-                </p>
-
-                <p>
-                    So... your birthday was September 22?
-                </p>
-
-                <p>
-                    And yes, I know.
-                </p>
-
-                <p>
-                    I wished you that day.
-                </p>
-
-                <p>
-                    But apparently, wishing you a happy
-                    birthday wasn't enough.
-                </p>
-
-                <p>
-                    I was supposed to give you a gift too.
-                </p>
-
-                <p>
-                    Unfortunately, something much more
-                    important happened.
-                </p>
-
-                <p class="emphasis">
-                    My exams.
-                </p>
-
-                <p>
-                    Your birthday had to compete with
-                    my academic survival.
-                </p>
-
-                <p>
-                    And guess what?
-                </p>
-
-                <p class="emphasis">
-                    My exams won.
-                </p>
-
-                <p>
-                    So yes, I'm giving you your birthday
-                    gift several days late.
-                </p>
-
-                <p>
-                    I actually planned this website before
-                    your birthday.
-                </p>
-
-                <p>
-                    I just couldn't finish it because my
-                    exams decided to arrive at the worst
-                    possible time.
-                </p>
-
-                <p>
-                    So technically...
-                </p>
-
-                <p>
-                    this isn't a late gift.
-                </p>
-
-                <p>
-                    So... anyway...
-                </p>
-
-                <p class="emphasis">
-                    Happy belated birthday, Marzia.
-                </p>
-
-                <p>
-                    You're 15 now.
-                </p>
-
-                <p>
-                    Which is honestly weird to think about.
-                </p>
-
-            </article>
-
-
-            <!-- PAGE 2 -->
-
-            <article class="letter-page">
-
-                <div class="page-number">
-                    II
-                </div>
-
-                <div class="divider">
-                    ❦
-                </div>
-
-                <p>
-                    I couldn't exactly be there in person,
-                    right?
-                </p>
-
-                <p>
-                    So I couldn't hand you a present,
-                </p>
-
-                <p>
-                    take you somewhere,
-                </p>
-
-                <p>
-                    or do anything particularly fancy.
-                </p>
-
-                <p>
-                    But I still wanted to give you something.
-                </p>
-
-                <p>
-                    And somehow I ended up thinking...
-                </p>
-
-                <p class="quote">
-                    “Why not make a website?”
-                </p>
-
-                <p>
-                    <i>(caz it's free.. ahhh 🌚)</i>
-                </p>
-
-                <p>
-                    Ehem... I mean...
-                </p>
-
-                <p>
-                    because apparently a normal birthday
-                    wish was too easy.
-                </p>
-
-                <p>
-                    So...
-                </p>
-
-                <p class="emphasis">
-                    I made this.
-                </p>
-
-                <p>
-                    For you.
-                </p>
-
-                <p>
-                    I don't even know what your reaction
-                    will be.
-                </p>
-
-                <p>
-                    Maybe you won't like it.
-                </p>
-
-                <p>
-                    Or maybe you'll laugh.
-                </p>
-
-                <p>
-                    Maybe you'll roast me for making
-                    this shii.
-                </p>
-
-                <p>
-                    Maybe you'll just stare at your screen
-                    and think...
-                </p>
-
-                <p class="quote">
-                    “Ezu... ehem, this man is hot...
-                    ehem, kidding... lol.”
-                </p>
-
-                <p>
-                    I mean...
-                </p>
-
-                <p>
-                    But I wanted to make something rather
-                    than simply say
-                </p>
-
-                <p class="quote">
-                    “Happy birthday.”
-                </p>
-
-                <p>
-                    Because sometimes saying something
-                    is easy.
-                </p>
-
-                <p>
-                    Putting time into something is different...
-                    yk that, right?
-                </p>
-
-                <p>
-                    And I wanted to put some time into this.
-                </p>
-
-                <p>
-                    Not because I had to.
-                </p>
-
-                <p>
-                    Not because you asked me to.
-                </p>
-
-                <p>
-                    Just because...
-                </p>
-
-                <p class="emphasis">
-                    you're one of those people I'm
-                    genuinely grateful I met.
-                </p>
-
-            </article>
-            <!-- PAGE 3 -->
-
-            <article class="letter-page">
-
-                <div class="page-number">
-                    III
-                </div>
-
-                <h2>
-                    Okay, time to be serious...
-                </h2>
-
-                <p>
-                    Ehem.
-                </p>
-
-                <p>
-                    We've talked about life so many times.
-                </p>
-
-                <p>
-                    About how unfair it can be.
-                </p>
-
-                <p>
-                    How confusing it can be.
-                </p>
-
-                <p>
-                    How sometimes everything feels
-                    completely pointless.
-                </p>
-
-                <p>
-                    And sometimes we make fun of the
-                    whole thing anyway.
-                </p>
-
-                <p>
-                    But I think life is a strange mixture.
-                </p>
-
-                <p>
-                    It can be difficult.
-                </p>
-
-                <p>
-                    It can be exhausting.
-                </p>
-
-                <p>
-                    Sometimes things don't go the way
-                    we want.
-                </p>
-
-                <p>
-                    People leave.
-                </p>
-
-                <p>
-                    Plans fail.
-                </p>
-
-                <p>
-                    We make stupid decisions.
-                </p>
-
-                <p>
-                    We lose things we thought we'd keep
-                    forever.
-                </p>
-
-                <p>
-                    And there are days when everything
-                    just feels dull.
-                </p>
-
-                <p class="emphasis">
-                    But then...
-                </p>
-
-                <p>
-                    there are also the little things.
-                </p>
-
-                <p>
-                    A random conversation that lasts hours.
-                </p>
-
-                <p>
-                    Laughing at something incredibly stupid.
-                </p>
-
-                <p>
-                    Someone remembering something you
-                    said months ago.
-                </p>
-
-                <p>
-                    A random message after not talking
-                    for days.
-                </p>
-
-                <p>
-                    Talking about our problems and somehow
-                    ending up talking about something
-                    completely unrelated.
-                </p>
-
-                <p>
-                    Those stupid little moments don't look
-                    important while they're happening.
-                </p>
-
-                <p class="emphasis">
-                    But later...
-                </p>
-
-                <p>
-                    they become memories.
-                </p>
-
-                <p>
-                    And maybe that's one of the strange
-                    things about being alive.
-                </p>
-
-                <p>
-                    We spend so much time looking for some
-                    huge meaning to life,
-                </p>
-
-                <p>
-                    while a lot of what makes life worth
-                    experiencing comes from very small things...
-                </p>
-
-                <p class="center-big">
-                    People.<br>
-                    Memories.<br>
-                    Conversations.<br>
-                    Friendships.
-                </p>
-
-                <p>
-                    The moments we don't realize we'll miss
-                    until they're already in the past.
-                </p>
-
-                <p>
-                    And when I think about the people I've met,
-                </p>
-
-                <p class="emphasis">
-                    I'm genuinely grateful that you're one
-                    of them.
-                </p>
-
-                <p>
-                    We don't talk every day.
-                </p>
-
-                <p>
-                    Every day isn't necessary.
-                </p>
-
-                <p>
-                    Sometimes we disappear for a while.
-                </p>
-
-                <p>
-                    But whenever we talk again,
-                </p>
-
-                <p>
-                    it somehow feels normal.
-                </p>
-
-                <p>
-                    And that's something I really value.
-                </p>
-
-                <p>
-                    And I really mean it, Marzia...
-                </p>
-
-                <p class="emphasis">
-                    I really want you to live a good life,
-                    bro.
-                </p>
-
-                <p>
-                    Hihi.
-                </p>
-
-            </article>
-
-
-            <!-- PAGE 4 -->
-
-            <article class="letter-page">
-
-                <div class="page-number">
-                    IV
-                </div>
-
-                <p>
-                    I don't know what your life is going
-                    to look like five years from now.
-                </p>
-
-                <p>
-                    Neither do you.
-                </p>
-
-                <p>
-                    And honestly...
-                </p>
-
-                <p class="emphasis">
-                    that's okay.
-                </p>
-
-                <p>
-                    You're only 15.
-                </p>
-
-                <p>
-                    You don't need to understand
-                    everything yet.
-                </p>
-
-                <p>
-                    You don't need to have your future
-                    perfectly planned.
-                </p>
-
-                <p>
-                    You don't need to know exactly who
-                    you're going to become.
-                </p>
-
-                <p>
-                    There is still so much life left
-                    for you to experience.
-                </p>
-
-                <p>
-                    You'll meet new people.
-                </p>
-
-                <p>
-                    Read new books.
-                </p>
-
-                <p>
-                    Find new music.
-                </p>
-
-                <p>
-                    Watch new anime.
-                </p>
-
-                <p>
-                    Change your opinions.
-                </p>
-
-                <p>
-                    <i>
-                        (Maybe you will hate Samay one day,
-                        hihi 🧛🏻‍♂️)
-                    </i>
-                </p>
-
-                <p>
-                    Make mistakes.
-                </p>
-
-                <p>
-                    Learn things.
-                </p>
-
-                <p>
-                    Laugh at things you once took seriously.
-                </p>
-
-                <p>
-                    And probably make some terrible
-                    decisions too.
-                </p>
-
-                <p>
-                    That's part of it.
-                </p>
-
-                <p class="emphasis">
-                    So don't spend your entire life worrying
-                    about what life is supposed to become.
-                </p>
-
-                <p class="center-big">
-                    Live it.
-                </p>
-
-                <p>
-                    Enjoy the stupid moments.
-                </p>
-
-                <p>
-                    Enjoy the good days.
-                </p>
-
-                <p>
-                    And when the difficult days come,
-                </p>
-
-                <p>
-                    remember that they are still just days.
-                </p>
-
-                <p>
-                    They aren't the entire story.
-                </p>
-
-                <p>
-                    And whenever life gets too complicated,
-                </p>
-
-                <p>
-                    you can always come back and complain
-                    to me.
-                </p>
-
-                <p>
-                    I'll probably complain with you.
-                </p>
-
-                <p>
-                    That's basically our speciality.
-                </p>
-
-                <p>
-                    And yeah...
-                </p>
-
-                <p class="emphasis">
-                    I'll be here.
-                </p>
-
-                <p>
-                    Maybe not every day.
-                </p>
-
-                <p>
-                    Maybe sometimes we'll both get busy.
-                </p>
-
-                <p>
-                    Maybe life will take us in completely
-                    different directions.
-                </p>
-
-                <p>
-                    But I don't want you to think that
-                    distance or time automatically makes
-                    people meaningless.
-                </p>
-
-                <p>
-                    Some people remain important even when
-                    life gets busy.
-                </p>
-
-                <p>
-                    And I hope our friendship is one of
-                    those things.
-                </p>
-
-                <p>
-                    Because despite all the jokes,
-                </p>
-
-                <p>
-                    all the arguments,
-                </p>
-
-                <p>
-                    all the random conversations,
-                </p>
-
-                <p>
-                    all the nonsense...
-                </p>
-
-                <p class="emphasis">
-                    I'm genuinely glad I know you.
-                </p>
-
-                <p>
-                    Maybe life really doesn't have some
-                    grand meaning.
-                </p>
-
-                <p>
-                    Maybe we're just here for a while,
-                </p>
-
-                <p>
-                    trying to understand things,
-                </p>
-
-                <p>
-                    trying to survive,
-                </p>
-
-                <p>
-                    trying to enjoy whatever good moments
-                    we get.
-                </p>
-
-                <p>
-                    I don't know.
-                </p>
-
-                <p>
-                    But if that's true...
-                </p>
-
-                <p>
-                    then I'm still grateful for the random
-                    coincidence that put you in my life.
-                </p>
-
-                <p>
-                    Out of all the people I could have met,
-                </p>
-
-                <p>
-                    somehow I ended up meeting you.
-                </p>
-
-                <p class="emphasis">
-                    And that's a pretty nice accident.
-                </p>
-
-                <p>
-                    So...
-                </p>
-
-                <p>
-                    don't think too much.
-                </p>
-
-                <p>
-                    Don't try to solve your entire life
-                    at 15.
-                </p>
-
-                <p class="center-big">
-                    Bachte shekho.
-                </p>
-
-                <p>
-                    Laugh more.
-                </p>
-
-                <p>
-                    Enjoy more.
-                </p>
-
-                <p>
-                    Make memories.
-                </p>
-
-                <p>
-                    Be stupid sometimes.
-                </p>
-
-                <p>
-                    Take care of yourself.
-                </p>
-
-                <p>
-                    And keep being the person you are.
-                </p>
-
-                <p>
-                    Because you don't need to become
-                    someone else to be worth knowing.
-                </p>
-
-                <p>
-                    And if one day you look back at this
-                    period of your life,
-                </p>
-
-                <p>
-                    I hope you'll remember that there was
-                    at least one idiot named Izu
-                </p>
-
-                <p>
-                    who was sitting somewhere far away,
-                </p>
-
-                <p>
-                    talking to you about life,
-                </p>
-
-                <p>
-                    complaining about existence,
-                </p>
-
-                <p>
-                    laughing at absolutely stupid things,
-                </p>
-
-                <p>
-                    and genuinely being happy that you
-                    were his friend.
-                </p>
-
-                <p>
-                    I couldn't be there on your birthday.
-                </p>
-
-                <p>
-                    I couldn't give you a physical present.
-                </p>
-
-                <p>
-                    I couldn't even finish this on time.
-                </p>
-
-                <p>
-                    But I could make this.
-                </p>
-
-                <p>
-                    So I did.
-                </p>
-
-                <p>
-                    Maybe it's not perfect.
-                </p>
-
-                <p>
-                    Maybe you'll roast me for it.
-                </p>
-
-                <p>
-                    Maybe you'll say,
-                </p>
-
-                <p class="quote">
-                    “Ezu, you seriously made all this
-                    for my birthday?”
-                </p>
-
-                <p>
-                    And I'll probably say...
-                </p>
-
-                <p class="quote">
-                    “Yes. Unfortunately.”
-                </p>
-
-                <p>
-                    But I mean it.
-                </p>
-
-                <p>
-                    I made this because you're important
-                    to me.
-                </p>
-
-                <p>
-                    And because some people deserve to know
-                    that their existence has mattered
-                    to someone.
-                </p>
-
-                <p class="emphasis">
-                    So, Marzia...
-                </p>
-
-                <p class="center-big">
-                    Happy 15th birthday.
-                </p>
-
-                <p>
-                    I hope the next year gives you more
-                    reasons to laugh than to worry.
-                </p>
-
-                <p>
-                    More memories than regrets.
-                </p>
-
-                <p>
-                    More good days than bad ones.
-                </p>
-
-                <p>
-                    And a lot more life than you can
-                    currently imagine.
-                </p>
-
-                <p>
-                    And please...
-                </p>
-
-                <p class="emphasis">
-                    don't become too mature.
-                </p>
-
-                <p>
-                    I still need someone to argue with.
-                </p>
-
-                <div class="signature">
-                    — your ezuu
-                </div>
-
-            </article>
-
-        </div>
-
-        <button class="letter-next" id="letterNext">
-            Continue ↓
-        </button>
-
-    </div>
-
-</section>
-<!-- =========================
-     FINAL BIRTHDAY
-========================= -->
-
-<section id="birthday" class="screen">
-
-    <div class="party-bg">
-
-        <div class="balloon b1"></div>
-        <div class="balloon b2"></div>
-        <div class="balloon b3"></div>
-        <div class="balloon b4"></div>
-        <div class="balloon b5"></div>
-        <div class="balloon b6"></div>
-
-        <div class="string s1"></div>
-        <div class="string s2"></div>
-        <div class="string s3"></div>
-
-        <div class="confetti-container"
-             id="confetti"></div>
-
-        <div class="birthday-content">
-
-            <div class="photo-frame">
-
-                <!--
-                IMPORTANT:
-                Put Marzia's picture in the same folder
-                as index.html and name it marzia.jpg
-                -->
-
-                <img
-                    src="marzia.jpg"
-                    alt="Marzia"
-                    class="marzia-photo"
-                >
-
-            </div>
-
-            <div class="birthday-title">
-                HAPPY BIRTHDAY
-            </div>
-
-            <div class="birthday-name">
-                MARZIA
-            </div>
-
-            <div class="age">
-                15
-            </div>
-
-            <div class="final-message">
-                Happy 15th, Marzia ♡
-            </div>
-
-        </div>
-
-
-        <!-- FINAL PANDA -->
-
-        <div class="final-panda">
-
-            <div class="panda-wrap">
-
-                <div class="panda party-panda">
-
-                    <div class="panda-eye left"></div>
-                    <div class="panda-eye right"></div>
-
-                    <div class="panda-nose"></div>
-                    <div class="panda-mouth"></div>
-
-                    <div class="panda-arm left"></div>
-                    <div class="panda-arm right"></div>
-
-                    <div class="panda-foot left"></div>
-                    <div class="panda-foot right"></div>
-
-                </div>
-
-                <div class="izu-tag final-tag">
-                    IZU
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PARTY POPPER -->
-
-        <div class="party-popper left-popper">
-            <div class="popper-body"></div>
-        </div>
-
-        <div class="party-popper right-popper">
-            <div class="popper-body"></div>
-        </div>
-
-
-        <div class="final-small">
-            from your ezuu ♡
-        </div>
-
-    </div>
-
-</section>
-
-
-<style>
-
-/* =========================
-   WISH SCREEN
-========================= */
-
-#wishScreen{
-    background:
-        radial-gradient(circle at 50% 20%,#4a3528,#211914 55%,#0d0908);
-    align-items:center;
-    justify-content:center;
-    overflow-y:auto;
-}
-
-.wish-container{
-    position:relative;
-    width:min(94%,520px);
-    height:100%;
-    overflow-y:auto;
-    padding:40px 0 70px;
-    text-align:center;
-}
-
-.wish-title{
-    color:#e6c99f;
-    font-size:28px;
-    font-weight:bold;
-    margin-bottom:8px;
-}
-
-.wish-subtitle{
-    color:#bfa98f;
-    font-size:14px;
-    margin-bottom:25px;
-}
-
-.wish-paper{
-    background:#f0dfbb;
-    color:#39281d;
-    margin:0 auto;
-    width:92%;
-    padding:30px 22px 35px;
-    border-radius:3px;
-    box-shadow:
-        0 15px 40px #0009,
-        inset 0 0 35px #7d573525;
-    transform:rotate(-.5deg);
-    text-align:left;
-}
-
-.wish-intro{
-    text-align:center;
-    font-size:17px;
-    line-height:1.6;
-    margin-bottom:30px;
-}
-
-.wish-paper label{
-    display:block;
-    margin:20px 0 8px;
-    font-size:15px;
-    line-height:1.4;
-    font-weight:bold;
-}
-
-.wish-paper textarea{
-    width:100%;
-    min-height:90px;
-    resize:none;
-    border:0;
-    border-bottom:1px solid #8e7055;
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent 27px,
-            rgba(93,66,42,.16) 28px
-        );
-    color:#39281d;
-    font-family:"Segoe Print","Comic Sans MS",cursive;
-    font-size:15px;
-    line-height:28px;
-    outline:none;
-    padding:3px;
-}
-
-.wish-paper textarea::placeholder{
-    color:#806d5b;
-    opacity:.7;
-}
-
-.send-wish{
-    display:block;
-    margin:30px auto 0;
-    border:none;
-    background:#704c32;
-    color:#f8e9c9;
-    padding:14px 30px;
-    border-radius:25px;
-    font-family:Georgia,serif;
-    font-size:15px;
-    cursor:pointer;
-}
-
-.wish-note{
-    color:#bda58b;
-    font-size:11px;
-    margin-top:18px;
-}
-
-.wish-decoration{
-    position:absolute;
-    color:#c28e6a;
-    font-size:38px;
-    opacity:.65;
-}
-
-.top-left{
-    top:15px;
-    left:5px;
-}
-
-.top-right{
-    top:15px;
-    right:5px;
-}
-
-
-/* =========================
-   LETTER
-========================= */
-
-#letterScreen{
-    background:#16100c;
-    align-items:center;
-    justify-content:center;
-}
-
-.letter-shell{
-    position:relative;
-    width:100%;
-    height:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.letter-scroll{
-    width:min(94%,560px);
-    height:88vh;
-    overflow-y:auto;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
-    border-radius:3px;
-
-    background:
-        radial-gradient(
-            ellipse at center,
-            #f4e6c7 0%,
-            #ead4ad 65%,
-            #d2b58a 100%
-        );
-
-    box-shadow:
-        0 20px 70px #000b,
-        inset 0 0 80px rgba(91,55,28,.16);
-
-    color:#3c2a1c;
-}
-
-.letter-page{
-    position:relative;
-    min-height:100%;
-    padding:55px 30px 70px;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    line-height:1.8;
-    font-size:16px;
-
-    background:
-        linear-gradient(
-            rgba(255,255,255,.06),
-            rgba(100,60,30,.03)
-        );
-}
-
-.letter-page + .letter-page{
-    border-top:2px dashed rgba(90,57,32,.3);
-}
-
-.letter-page h1{
-    text-align:center;
-    font-size:27px;
-    letter-spacing:2px;
-    line-height:1.3;
-    font-weight:normal;
-}
-
-.letter-page h2{
-    text-align:center;
-    font-weight:normal;
-    font-style:italic;
-    margin-bottom:25px;
-}
-
-.letter-page p{
-    margin:0 0 18px;
-}
-
-.letter-name{
-    font-size:22px;
-    font-style:italic;
-}
-
-.divider{
-    text-align:center;
-    font-size:25px;
-    margin:15px 0 30px;
-    color:#8b6043;
-}
-
-.emphasis{
-    font-weight:bold;
-    font-style:italic;
-}
-
-.quote{
-    text-align:center;
-    font-style:italic;
-    font-size:18px;
-    padding:8px 5px;
-}
-
-.center-big{
-    text-align:center;
-    font-size:21px;
-    line-height:1.9;
-    font-weight:bold;
-}
-
-.page-number{
-    position:absolute;
-    top:18px;
-    right:25px;
-    font-size:13px;
-    font-style:italic;
-    opacity:.5;
-}
-
-.signature{
-    text-align:right;
-    font-size:21px;
-    font-style:italic;
-    margin-top:35px;
-}
-
-.flower{
-    position:absolute;
-    z-index:20;
-    color:#b78568;
-    font-size:40px;
-    opacity:.7;
-    pointer-events:none;
-}
-
-.flower-one{
-    top:5%;
-    left:2%;
-}
-
-.flower-two{
-    top:6%;
-    right:2%;
-}
-
-.flower-three{
-    bottom:6%;
-    left:2%;
-}
-
-.flower-four{
-    bottom:5%;
-    right:2%;
-}
-
-.letter-next{
-    position:absolute;
-    bottom:12px;
-    border:none;
-    background:#9a6d4c;
-    color:#f9ead0;
-    border-radius:25px;
-    padding:11px 25px;
-    font-family:Georgia,serif;
-    cursor:pointer;
-    box-shadow:0 5px 20px #0008;
-}
-
-
-/* =========================
-   BIRTHDAY PARTY
-========================= */
-
-#birthday{
-    background:#140d12;
-}
-
-.party-bg{
-    position:relative;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            #6c4050 0%,
-            #321c29 45%,
-            #110a10 100%
-        );
-}
-
-.birthday-content{
-    position:absolute;
-    z-index:10;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-52%);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    width:100%;
-}
-
-.photo-frame{
-    width:min(64vw,260px);
-    height:min(64vw,260px);
-    border-radius:50%;
-    padding:8px;
-    background:#f0d49b;
-    box-shadow:
-        0 0 0 4px #8c5b42,
-        0 20px 50px #000b;
-    animation:photoFloat 4s ease-in-out infinite;
-}
-
-@keyframes photoFloat{
-    0%,100%{transform:translateY(0) rotate(-1deg)}
-    50%{transform:translateY(-7px) rotate(1deg)}
-}
-
-.marzia-photo{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    border-radius:50%;
-    display:block;
-}
-
-.birthday-title{
-    margin-top:20px;
-    font-family:Georgia,serif;
-    font-size:24px;
-    font-weight:bold;
-    letter-spacing:4px;
-    color:#ffe8bd;
-    text-shadow:0 3px 15px #000;
-}
-
-.birthday-name{
-    margin-top:5px;
-    font-family:Georgia,serif;
-    font-size:39px;
-    letter-spacing:5px;
-    color:#fff1d2;
-    text-shadow:
-        0 3px 20px #000,
-        0 0 20px rgba(255,200,130,.3);
-}
-
-.age{
-    margin-top:2px;
-    font-size:19px;
-    color:#e7b98e;
-    letter-spacing:5px;
-}
-
-.final-message{
-    margin-top:13px;
-    font-style:italic;
-    color:#eacdb2;
-    font-size:15px;
-}
-
-.final-small{
-    position:absolute;
-    z-index:20;
-    bottom:17px;
-    left:50%;
-    transform:translateX(-50%);
-    color:#c7a991;
-    font-size:12px;
-    letter-spacing:2px;
-}
-
-
-/* BALLOONS */
-
-.balloon{
-    position:absolute;
-    width:58px;
-    height:75px;
-    border-radius:50% 50% 48% 48%;
-    opacity:.9;
-    animation:balloonFloat 5s ease-in-out infinite;
-    z-index:2;
-}
-
-.balloon:after{
-    content:"";
-    position:absolute;
-    bottom:-45px;
-    left:50%;
-    width:1px;
-    height:50px;
-    background:#d8c1aa99;
-}
-
-.b1{
-    top:5%;
-    left:7%;
-    background:#d68c76;
-}
-
-.b2{
-    top:13%;
-    right:8%;
-    background:#d8b069;
-    animation-delay:-1s;
-}
-
-.b3{
-    top:34%;
-    left:2%;
-    background:#9676a8;
-    animation-delay:-2s;
-}
-
-.b4{
-    top:30%;
-    right:2%;
-    background:#8eac9b;
-    animation-delay:-3s;
-}
-
-.b5{
-    top:4%;
-    left:42%;
-    background:#b8798d;
-    animation-delay:-1.5s;
-}
-
-.b6{
-    top:23%;
-    left:22%;
-    background:#c69b69;
-    animation-delay:-2.5s;
-}
-
-@keyframes balloonFloat{
-    0%,100%{
-        transform:translateY(0) rotate(-3deg);
-    }
-    50%{
-        transform:translateY(-15px) rotate(4deg);
-    }
-}
-
-
-/* FINAL PANDA */
-
-.final-panda{
-    position:absolute;
-    z-index:15;
-    bottom:35px;
-    right:12px;
-    transform:scale(.6);
-    transform-origin:bottom right;
-}
-
-.party-panda{
-    animation:
-        pandaDance .55s ease-in-out infinite alternate;
-}
-
-@keyframes pandaDance{
-    from{
-        transform:rotate(-8deg) translateY(0);
-    }
-    to{
-        transform:rotate(8deg) translateY(-12px);
-    }
-}
-
-.final-tag{
-    top:25px;
-    left:90px;
-    transform:rotate(5deg);
-}
-
-
-/* PARTY POPPERS */
-
-.party-popper{
-    position:absolute;
-    z-index:18;
-    bottom:80px;
-    width:55px;
-    height:80px;
-    animation:popperShake .7s infinite alternate;
-}
-
-.left-popper{
-    left:12%;
-    transform:rotate(-30deg);
-}
-
-.right-popper{
-    right:17%;
-    transform:rotate(30deg);
-}
-
-.popper-body{
-    width:35px;
-    height:70px;
-    border-radius:8px;
-    background:#c47d5b;
-    position:absolute;
-    bottom:0;
-}
-
-@keyframes popperShake{
-    from{margin-bottom:0}
-    to{margin-bottom:8px}
-}
-
-
-/* CONFETTI */
-
-.confetti{
-    position:absolute;
-    width:7px;
-    height:14px;
-    top:-30px;
-    opacity:.9;
-    animation:confettiFall linear forwards;
-}
-
-@keyframes confettiFall{
-    0%{
-        transform:translateY(-20px) rotate(0deg);
-    }
-    100%{
-        transform:translateY(110vh) rotate(720deg);
-    }
-}
-
-      </style>
-<script>
-
-/* =====================================================
-   STAR BACKGROUND
-===================================================== */
-
-const stars = document.getElementById("stars");
-
-for(let i = 0; i < 90; i++){
-
-    const star = document.createElement("div");
-
-    star.className = "star";
-
-    star.style.left =
-        Math.random() * 100 + "%";
-
-    star.style.top =
-        Math.random() * 100 + "%";
-
-    star.style.animationDelay =
-        Math.random() * 3 + "s";
-
-    star.style.animationDuration =
-        1.5 + Math.random() * 3 + "s";
-
-    stars.appendChild(star);
-}
-
-
-/* =====================================================
-   SCREEN CHANGER
-===================================================== */
-
-function showScreen(id){
-
-    document.querySelectorAll(".screen")
-        .forEach(screen => {
-
-            screen.classList.remove("active");
-
-        });
-
-    const next =
-        document.getElementById(id);
-
-    next.classList.add("active");
-}
-
-
-/* =====================================================
-   STEP 1
-===================================================== */
-
-const intro =
-    document.getElementById("intro");
-
-const introSpeech =
-    document.getElementById("introSpeech");
-
-let introStage = 0;
-
-intro.addEventListener("click", function(){
-
-    if(introStage === 0){
-
-        introStage = 1;
-
-        introSpeech.innerHTML =
-        "There is a gift here...<br>" +
-        "and it's for you.";
-
-        document.querySelector(".tap-text")
-            .textContent = "TAP AGAIN";
-
-        return;
-    }
-
-    showScreen("giftScreen");
-
-});
-
-
-/* =====================================================
-   GIFT
-===================================================== */
-
-const gift =
-    document.getElementById("gift");
-
-let giftOpened = false;
-
-gift.addEventListener("click", function(e){
-
-    e.stopPropagation();
-
-    if(giftOpened) return;
-
-    giftOpened = true;
-
-    gift.classList.add("open");
-
-    setTimeout(() => {
-
-        showScreen("memory");
-
-        memoryIndex = 0;
-
-        updateMemory();
-
-    }, 1200);
-
-});
-
-
-/* =====================================================
-   STEP 2 MEMORY STORY
-===================================================== */
-
-const memoryStories = [
-
-    "Do you remember when we met?",
-
-    "It was somewhere in 2025...",
-
-    "In that Messenger group called<br><b>Extrovert + Introvert.</b>",
-
-    "And for some reason...<br>you decided that bullying Ezaz was going to be your first impression.",
-
-    "You were trying so hard to make him look like the bad guy while making yourself look like the innocent one.",
-
-    "And Ezaz?<br>He mostly just sat there and took it.",
-
-    "But then...<br><b>plot twist.</b>",
-
-    "You sent him a friend request on Facebook.",
-
-    "And after that, you actually came and apologized for being mean to him.",
-
-    "Somehow, that apology turned into conversations...",
-
-    "And those conversations turned into friendship.",
-
-    "And now look at you.",
-
-    "From trying to bully this idiot in a group chat...",
-
-    "...to becoming his little sister.",
-
-    "You don't even talk every single day.",
-
-    "But whenever you two actually start talking...",
-
-    "...somehow three or four hours disappear.",
-
-    "You've shared family problems, future plans, life problems, random nonsense...",
-
-    "...and, of course, your legendary relationship cycle.",
-
-    "Break up. Complain to Ezaz. Somehow get back together again.",
-
-    "And then come back and roast Ezaz for being single.",
-
-    "Honestly, Marzia... you're a strange little creature.",
-
-    "But underneath all the roasting, fighting, and nonsense...",
-
-    "...you're someone Ezaz genuinely considers family.",
-
-    "You're somehow childish and surprisingly mature at the same time.",
-
-    "And even though Ezaz still doesn't remember your ridiculously long full name...",
-
-    "...he does remember one thing.",
-
-    "Somewhere along the way, you became an important part of his life.",
-
-    "So... that's how this weird friendship started.",
-
-    "But enough about the past.",
-
-    "Because today isn't about how you two met.",
-
-    "Today is about you.",
-
-    "<b>Your 15th birthday.</b>"
-
-];
-
-let memoryIndex = 0;
-
-const memoryText =
-    document.getElementById("memoryText");
-
-const memoryCounter =
-    document.getElementById("memoryCounter");
-
-const memoryNext =
-    document.getElementById("memoryNext");
-
-
-function updateMemory(){
-
-    memoryText.style.opacity = "0";
-    memoryText.style.transform =
-        "rotate(-1deg) translateY(8px)";
-
-    setTimeout(() => {
-
-        memoryText.innerHTML =
-            memoryStories[memoryIndex];
-
-        memoryCounter.textContent =
-            (memoryIndex + 1) +
-            " / " +
-            memoryStories.length;
-
-        memoryText.style.opacity = "1";
-
-        memoryText.style.transform =
-            "rotate(-1deg) translateY(0)";
-
-    },250);
-
-}
-
-
-memoryNext.addEventListener("click",function(){
-
-    if(memoryIndex < memoryStories.length - 1){
-
-        memoryIndex++;
-
-        updateMemory();
-
-    }else{
-
-        showScreen("wishScreen");
-
-    }
-
-});
-
-
-/* =====================================================
-   WISH FORM
-===================================================== */
-
-const sendWish =
-    document.getElementById("sendWish");
-
-sendWish.addEventListener("click",function(){
-
-    /*
-       IMPORTANT:
-       Nothing is uploaded or sent.
-       The written wishes remain only in this
-       browser session and disappear when the
-       next screen loads.
-    */
-
-    const paper =
-        document.querySelector(".wish-paper");
-
-    paper.style.transition =
-        "1s ease";
-
-    paper.style.transform =
-        "translateY(-40px) rotate(-4deg) scale(.94)";
-
-    paper.style.opacity = "0";
-
-    setTimeout(() => {
-
-        showScreen("letterScreen");
-
-        window.scrollTo(0,0);
-
-    },1000);
-
-});
-
-
-/* =====================================================
-   LETTER
-===================================================== */
-
-const letterScroll =
-    document.getElementById("letterScroll");
-
-const letterNext =
-    document.getElementById("letterNext");
-
-let letterFinished = false;
-
-letterNext.addEventListener("click",function(){
-
-    const atBottom =
-        letterScroll.scrollTop +
-        letterScroll.clientHeight >=
-        letterScroll.scrollHeight - 30;
-
-    if(!atBottom){
-
-        letterScroll.scrollBy({
-            top: window.innerHeight * .78,
-            behavior:"smooth"
-        });
-
-    }else{
-
-        if(!letterFinished){
-
-            letterFinished = true;
-
-            showScreen("birthday");
-
-            startCelebration();
-
-        }
-
-    }
-
-});
-
-
-/* =====================================================
-   CONFETTI
-===================================================== */
-
-function startCelebration(){
-
-    const container =
-        document.getElementById("confetti");
-
-    container.innerHTML = "";
-
-    const symbols = [
-        "✦",
-        "✧",
-        "•",
-        "◆",
-        "✿",
-        "★"
-    ];
-
-    for(let i = 0; i < 90; i++){
-
-        const piece =
-            document.createElement("div");
-
-        piece.className = "confetti";
-
-        piece.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
-
-        piece.style.left =
-            Math.random() * 100 + "%";
-
-        piece.style.fontSize =
-            (8 + Math.random() * 12) + "px";
-
-        piece.style.animationDuration =
-            (2.5 + Math.random() * 3) + "s";
-
-        piece.style.animationDelay =
-            Math.random() * 1.5 + "s";
-
-        container.appendChild(piece);
-
-    }
-
-}
-
-
-/* =====================================================
-   PREVENT ACCIDENTAL TEXT SELECTION
-===================================================== */
-
-document.addEventListener(
-    "contextmenu",
-    function(e){
-        e.preventDefault();
-    }
-);
-
-
-/* =====================================================
-   PHONE BACK BUTTON
-===================================================== */
-
-history.pushState(null,"",location.href);
-
-window.addEventListener("popstate",function(){
-
-    history.pushState(null,"",location.href);
-
-});
-
-
-/* =====================================================
-   FINAL INITIALIZATION
-===================================================== */
-
-showScreen("intro");
-
-</script>
-
-</body>
-</html>
