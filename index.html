@@ -2693,11 +2693,35 @@ function showStory(){
 }
 
 
+let pandaInterruptShown = false;
+let pandaInteractionActive = false;
+
+
+/* =========================
+   STORY CONTINUE
+========================= */
+
 function nextStory(){
+
+  if(pandaInteractionActive){
+    return;
+  }
 
   storyIndex++;
 
-  if(storyIndex>=story.length){
+  /*
+    The interruption happens once,
+    around the middle of the story.
+  */
+
+  if(storyIndex === 15 && !pandaInterruptShown){
+
+    showPandaInterruption();
+
+    return;
+  }
+
+  if(storyIndex >= story.length){
 
     showScreen("wishScreen");
 
@@ -2707,6 +2731,134 @@ function nextStory(){
   showStory();
 
 }
+
+
+/* =========================
+   PANDA INTERRUPTION
+========================= */
+
+function showPandaInterruption(){
+
+  pandaInterruptShown = true;
+  pandaInteractionActive = true;
+
+  const choice = document.getElementById("pandaChoice");
+  const dialogue = document.getElementById("pandaDialogue");
+  const reply = document.getElementById("ezazMessage");
+  const storyBox = document.getElementById("storyBox");
+
+  if(!choice) return;
+
+  dialogue.textContent = "I'm tired... can I go?";
+
+  reply.textContent = "";
+  reply.classList.remove("show");
+
+  document.getElementById("pandaYes").style.display="inline-flex";
+  document.getElementById("pandaNo").style.display="inline-flex";
+
+  storyBox.style.opacity=".25";
+  storyBox.style.pointerEvents="none";
+
+  choice.classList.add("show");
+
+  talkPanda("pandaIzu",1500);
+}
+
+
+/* =========================
+   MARZIA SAYS NO
+========================= */
+
+function pandaSaysNo(){
+
+  const dialogue = document.getElementById("pandaDialogue");
+  const choice = document.getElementById("pandaChoice");
+  const storyBox = document.getElementById("storyBox");
+
+  dialogue.textContent = "YES! I knew you'd understand me.";
+
+  document.getElementById("pandaYes").style.display="none";
+  document.getElementById("pandaNo").style.display="none";
+
+  setTimeout(()=>{
+
+    choice.classList.remove("show");
+
+    storyBox.style.opacity="1";
+    storyBox.style.pointerEvents="auto";
+
+    pandaInteractionActive=false;
+
+    showStory();
+
+  },1300);
+}
+
+
+/* =========================
+   MARZIA SAYS YES
+========================= */
+
+function pandaSaysYes(){
+
+  const panda = document.getElementById("pandaIzu");
+  const dialogue = document.getElementById("pandaDialogue");
+  const reply = document.getElementById("ezazMessage");
+
+  /*
+    YES button disappears immediately.
+  */
+
+  document.getElementById("pandaYes").style.display="none";
+
+  dialogue.textContent="EXCUSE ME?!";
+
+  panda.classList.add("panda-angry");
+
+  reply.textContent =
+    "MARZIA DON'T LET HIM GO! He is the narrator, gadha.";
+
+  reply.classList.add("show");
+
+
+  setTimeout(()=>{
+
+    dialogue.textContent =
+      "I'M THE ONE DOING ALL THE WORK HERE!";
+
+  },1000);
+
+
+  setTimeout(()=>{
+
+    dialogue.textContent =
+      "...fine. I'll stay.";
+
+  },2200);
+
+
+  setTimeout(()=>{
+
+    panda.classList.remove("panda-angry");
+
+    document.getElementById("pandaNo").style.display="none";
+
+    document.getElementById("pandaChoice")
+      .classList.remove("show");
+
+    document.getElementById("storyBox").style.opacity="1";
+
+    document.getElementById("storyBox")
+      .style.pointerEvents="auto";
+
+    pandaInteractionActive=false;
+
+    showStory();
+
+  },3400);
+
+  }
 
 
 /* =====================================
