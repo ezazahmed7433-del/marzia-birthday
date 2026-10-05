@@ -1634,3 +1634,686 @@ body{
     </div>
 
 </section>
+<!-- =========================
+     FINAL BIRTHDAY
+========================= -->
+
+<section id="birthday" class="screen">
+
+    <div class="party-bg">
+
+        <div class="balloon b1"></div>
+        <div class="balloon b2"></div>
+        <div class="balloon b3"></div>
+        <div class="balloon b4"></div>
+        <div class="balloon b5"></div>
+        <div class="balloon b6"></div>
+
+        <div class="string s1"></div>
+        <div class="string s2"></div>
+        <div class="string s3"></div>
+
+        <div class="confetti-container"
+             id="confetti"></div>
+
+        <div class="birthday-content">
+
+            <div class="photo-frame">
+
+                <!--
+                IMPORTANT:
+                Put Marzia's picture in the same folder
+                as index.html and name it marzia.jpg
+                -->
+
+                <img
+                    src="marzia.jpg"
+                    alt="Marzia"
+                    class="marzia-photo"
+                >
+
+            </div>
+
+            <div class="birthday-title">
+                HAPPY BIRTHDAY
+            </div>
+
+            <div class="birthday-name">
+                MARZIA
+            </div>
+
+            <div class="age">
+                15
+            </div>
+
+            <div class="final-message">
+                Happy 15th, Marzia ♡
+            </div>
+
+        </div>
+
+
+        <!-- FINAL PANDA -->
+
+        <div class="final-panda">
+
+            <div class="panda-wrap">
+
+                <div class="panda party-panda">
+
+                    <div class="panda-eye left"></div>
+                    <div class="panda-eye right"></div>
+
+                    <div class="panda-nose"></div>
+                    <div class="panda-mouth"></div>
+
+                    <div class="panda-arm left"></div>
+                    <div class="panda-arm right"></div>
+
+                    <div class="panda-foot left"></div>
+                    <div class="panda-foot right"></div>
+
+                </div>
+
+                <div class="izu-tag final-tag">
+                    IZU
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PARTY POPPER -->
+
+        <div class="party-popper left-popper">
+            <div class="popper-body"></div>
+        </div>
+
+        <div class="party-popper right-popper">
+            <div class="popper-body"></div>
+        </div>
+
+
+        <div class="final-small">
+            from your ezuu ♡
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+/* =========================
+   WISH SCREEN
+========================= */
+
+#wishScreen{
+    background:
+        radial-gradient(circle at 50% 20%,#4a3528,#211914 55%,#0d0908);
+    align-items:center;
+    justify-content:center;
+    overflow-y:auto;
+}
+
+.wish-container{
+    position:relative;
+    width:min(94%,520px);
+    height:100%;
+    overflow-y:auto;
+    padding:40px 0 70px;
+    text-align:center;
+}
+
+.wish-title{
+    color:#e6c99f;
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.wish-subtitle{
+    color:#bfa98f;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+.wish-paper{
+    background:#f0dfbb;
+    color:#39281d;
+    margin:0 auto;
+    width:92%;
+    padding:30px 22px 35px;
+    border-radius:3px;
+    box-shadow:
+        0 15px 40px #0009,
+        inset 0 0 35px #7d573525;
+    transform:rotate(-.5deg);
+    text-align:left;
+}
+
+.wish-intro{
+    text-align:center;
+    font-size:17px;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+
+.wish-paper label{
+    display:block;
+    margin:20px 0 8px;
+    font-size:15px;
+    line-height:1.4;
+    font-weight:bold;
+}
+
+.wish-paper textarea{
+    width:100%;
+    min-height:90px;
+    resize:none;
+    border:0;
+    border-bottom:1px solid #8e7055;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 27px,
+            rgba(93,66,42,.16) 28px
+        );
+    color:#39281d;
+    font-family:"Segoe Print","Comic Sans MS",cursive;
+    font-size:15px;
+    line-height:28px;
+    outline:none;
+    padding:3px;
+}
+
+.wish-paper textarea::placeholder{
+    color:#806d5b;
+    opacity:.7;
+}
+
+.send-wish{
+    display:block;
+    margin:30px auto 0;
+    border:none;
+    background:#704c32;
+    color:#f8e9c9;
+    padding:14px 30px;
+    border-radius:25px;
+    font-family:Georgia,serif;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.wish-note{
+    color:#bda58b;
+    font-size:11px;
+    margin-top:18px;
+}
+
+.wish-decoration{
+    position:absolute;
+    color:#c28e6a;
+    font-size:38px;
+    opacity:.65;
+}
+
+.top-left{
+    top:15px;
+    left:5px;
+}
+
+.top-right{
+    top:15px;
+    right:5px;
+}
+
+
+/* =========================
+   LETTER
+========================= */
+
+#letterScreen{
+    background:#16100c;
+    align-items:center;
+    justify-content:center;
+}
+
+.letter-shell{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.letter-scroll{
+    width:min(94%,560px);
+    height:88vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+    border-radius:3px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #f4e6c7 0%,
+            #ead4ad 65%,
+            #d2b58a 100%
+        );
+
+    box-shadow:
+        0 20px 70px #000b,
+        inset 0 0 80px rgba(91,55,28,.16);
+
+    color:#3c2a1c;
+}
+
+.letter-page{
+    position:relative;
+    min-height:100%;
+    padding:55px 30px 70px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    line-height:1.8;
+    font-size:16px;
+
+    background:
+        linear-gradient(
+            rgba(255,255,255,.06),
+            rgba(100,60,30,.03)
+        );
+}
+
+.letter-page + .letter-page{
+    border-top:2px dashed rgba(90,57,32,.3);
+}
+
+.letter-page h1{
+    text-align:center;
+    font-size:27px;
+    letter-spacing:2px;
+    line-height:1.3;
+    font-weight:normal;
+}
+
+.letter-page h2{
+    text-align:center;
+    font-weight:normal;
+    font-style:italic;
+    margin-bottom:25px;
+}
+
+.letter-page p{
+    margin:0 0 18px;
+}
+
+.letter-name{
+    font-size:22px;
+    font-style:italic;
+}
+
+.divider{
+    text-align:center;
+    font-size:25px;
+    margin:15px 0 30px;
+    color:#8b6043;
+}
+
+.emphasis{
+    font-weight:bold;
+    font-style:italic;
+}
+
+.quote{
+    text-align:center;
+    font-style:italic;
+    font-size:18px;
+    padding:8px 5px;
+}
+
+.center-big{
+    text-align:center;
+    font-size:21px;
+    line-height:1.9;
+    font-weight:bold;
+}
+
+.page-number{
+    position:absolute;
+    top:18px;
+    right:25px;
+    font-size:13px;
+    font-style:italic;
+    opacity:.5;
+}
+
+.signature{
+    text-align:right;
+    font-size:21px;
+    font-style:italic;
+    margin-top:35px;
+}
+
+.flower{
+    position:absolute;
+    z-index:20;
+    color:#b78568;
+    font-size:40px;
+    opacity:.7;
+    pointer-events:none;
+}
+
+.flower-one{
+    top:5%;
+    left:2%;
+}
+
+.flower-two{
+    top:6%;
+    right:2%;
+}
+
+.flower-three{
+    bottom:6%;
+    left:2%;
+}
+
+.flower-four{
+    bottom:5%;
+    right:2%;
+}
+
+.letter-next{
+    position:absolute;
+    bottom:12px;
+    border:none;
+    background:#9a6d4c;
+    color:#f9ead0;
+    border-radius:25px;
+    padding:11px 25px;
+    font-family:Georgia,serif;
+    cursor:pointer;
+    box-shadow:0 5px 20px #0008;
+}
+
+
+/* =========================
+   BIRTHDAY PARTY
+========================= */
+
+#birthday{
+    background:#140d12;
+}
+
+.party-bg{
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #6c4050 0%,
+            #321c29 45%,
+            #110a10 100%
+        );
+}
+
+.birthday-content{
+    position:absolute;
+    z-index:10;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-52%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    width:100%;
+}
+
+.photo-frame{
+    width:min(64vw,260px);
+    height:min(64vw,260px);
+    border-radius:50%;
+    padding:8px;
+    background:#f0d49b;
+    box-shadow:
+        0 0 0 4px #8c5b42,
+        0 20px 50px #000b;
+    animation:photoFloat 4s ease-in-out infinite;
+}
+
+@keyframes photoFloat{
+    0%,100%{transform:translateY(0) rotate(-1deg)}
+    50%{transform:translateY(-7px) rotate(1deg)}
+}
+
+.marzia-photo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    display:block;
+}
+
+.birthday-title{
+    margin-top:20px;
+    font-family:Georgia,serif;
+    font-size:24px;
+    font-weight:bold;
+    letter-spacing:4px;
+    color:#ffe8bd;
+    text-shadow:0 3px 15px #000;
+}
+
+.birthday-name{
+    margin-top:5px;
+    font-family:Georgia,serif;
+    font-size:39px;
+    letter-spacing:5px;
+    color:#fff1d2;
+    text-shadow:
+        0 3px 20px #000,
+        0 0 20px rgba(255,200,130,.3);
+}
+
+.age{
+    margin-top:2px;
+    font-size:19px;
+    color:#e7b98e;
+    letter-spacing:5px;
+}
+
+.final-message{
+    margin-top:13px;
+    font-style:italic;
+    color:#eacdb2;
+    font-size:15px;
+}
+
+.final-small{
+    position:absolute;
+    z-index:20;
+    bottom:17px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#c7a991;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+
+/* BALLOONS */
+
+.balloon{
+    position:absolute;
+    width:58px;
+    height:75px;
+    border-radius:50% 50% 48% 48%;
+    opacity:.9;
+    animation:balloonFloat 5s ease-in-out infinite;
+    z-index:2;
+}
+
+.balloon:after{
+    content:"";
+    position:absolute;
+    bottom:-45px;
+    left:50%;
+    width:1px;
+    height:50px;
+    background:#d8c1aa99;
+}
+
+.b1{
+    top:5%;
+    left:7%;
+    background:#d68c76;
+}
+
+.b2{
+    top:13%;
+    right:8%;
+    background:#d8b069;
+    animation-delay:-1s;
+}
+
+.b3{
+    top:34%;
+    left:2%;
+    background:#9676a8;
+    animation-delay:-2s;
+}
+
+.b4{
+    top:30%;
+    right:2%;
+    background:#8eac9b;
+    animation-delay:-3s;
+}
+
+.b5{
+    top:4%;
+    left:42%;
+    background:#b8798d;
+    animation-delay:-1.5s;
+}
+
+.b6{
+    top:23%;
+    left:22%;
+    background:#c69b69;
+    animation-delay:-2.5s;
+}
+
+@keyframes balloonFloat{
+    0%,100%{
+        transform:translateY(0) rotate(-3deg);
+    }
+    50%{
+        transform:translateY(-15px) rotate(4deg);
+    }
+}
+
+
+/* FINAL PANDA */
+
+.final-panda{
+    position:absolute;
+    z-index:15;
+    bottom:35px;
+    right:12px;
+    transform:scale(.6);
+    transform-origin:bottom right;
+}
+
+.party-panda{
+    animation:
+        pandaDance .55s ease-in-out infinite alternate;
+}
+
+@keyframes pandaDance{
+    from{
+        transform:rotate(-8deg) translateY(0);
+    }
+    to{
+        transform:rotate(8deg) translateY(-12px);
+    }
+}
+
+.final-tag{
+    top:25px;
+    left:90px;
+    transform:rotate(5deg);
+}
+
+
+/* PARTY POPPERS */
+
+.party-popper{
+    position:absolute;
+    z-index:18;
+    bottom:80px;
+    width:55px;
+    height:80px;
+    animation:popperShake .7s infinite alternate;
+}
+
+.left-popper{
+    left:12%;
+    transform:rotate(-30deg);
+}
+
+.right-popper{
+    right:17%;
+    transform:rotate(30deg);
+}
+
+.popper-body{
+    width:35px;
+    height:70px;
+    border-radius:8px;
+    background:#c47d5b;
+    position:absolute;
+    bottom:0;
+}
+
+@keyframes popperShake{
+    from{margin-bottom:0}
+    to{margin-bottom:8px}
+}
+
+
+/* CONFETTI */
+
+.confetti{
+    position:absolute;
+    width:7px;
+    height:14px;
+    top:-30px;
+    opacity:.9;
+    animation:confettiFall linear forwards;
+}
+
+@keyframes confettiFall{
+    0%{
+        transform:translateY(-20px) rotate(0deg);
+    }
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+      </style>
