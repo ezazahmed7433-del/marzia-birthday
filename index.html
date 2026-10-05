@@ -2417,6 +2417,105 @@ textarea:focus{
 #pandaIzu.panda-angry .mouth{
   transform:scale(1.2);
 }
+  /* =========================
+   TAP IZU PANDA
+========================= */
+
+#pandaIzu.panda-tapped{
+  animation:pandaTap .45s ease;
+}
+
+@keyframes pandaTap{
+
+  0%{
+    transform:translateY(0) scale(1);
+  }
+
+  35%{
+    transform:translateY(-22px) scale(1.06) rotate(-4deg);
+  }
+
+  60%{
+    transform:translateY(-10px) scale(1.04) rotate(4deg);
+  }
+
+  100%{
+    transform:translateY(0) scale(1) rotate(0);
+  }
+
+}
+
+#pandaIzu.panda-tapped .arm.left{
+  animation:pandaWave .45s ease;
+}
+
+@keyframes pandaWave{
+
+  0%{
+    transform:rotate(48deg);
+  }
+
+  40%{
+    transform:rotate(20deg);
+  }
+
+  70%{
+    transform:rotate(65deg);
+  }
+
+  100%{
+    transform:rotate(48deg);
+  }
+
+}
+
+
+/* little speech message */
+
+#pandaTapMessage{
+  position:absolute;
+
+  left:50%;
+  top:-15px;
+
+  transform:translate(-50%,-100%) scale(.7);
+
+  width:max-content;
+  max-width:75vw;
+
+  padding:9px 14px;
+
+  background:rgba(0,0,0,.75);
+
+  color:white;
+
+  border:1px solid rgba(255,255,255,.25);
+
+  border-radius:15px;
+
+  font-size:14px;
+  font-weight:700;
+
+  text-align:center;
+
+  opacity:0;
+
+  pointer-events:none;
+
+  z-index:100;
+
+  transition:
+    opacity .2s ease,
+    transform .25s ease;
+}
+
+#pandaTapMessage.show{
+  opacity:1;
+
+  transform:
+    translate(-50%,-100%)
+    scale(1);
+  }
 </style>
 <script>
 
