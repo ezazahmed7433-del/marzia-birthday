@@ -2611,10 +2611,36 @@ function finishLetter(){
 
   showScreen("birthday");
 
-  startFinalCelebration();
+  const countdown = document.getElementById("birthdayCountdown");
+  const number = document.getElementById("countdownNumber");
 
+  countdown.classList.add("show");
+
+  number.textContent = "3";
+
+  setTimeout(()=>{
+    number.textContent = "2";
+    number.style.animation="none";
+    void number.offsetWidth;
+    number.style.animation="countdownPop .9s ease both";
+  },1000);
+
+  setTimeout(()=>{
+    number.textContent = "1";
+    number.style.animation="none";
+    void number.offsetWidth;
+    number.style.animation="countdownPop .9s ease both";
+  },2000);
+
+  setTimeout(()=>{
+
+    countdown.classList.remove("show");
+
+    startFinalCelebration();
+
+  },3000);
 }
-
+  
 
 /* =====================================
    CONFETTI
