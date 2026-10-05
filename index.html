@@ -2117,6 +2117,67 @@ textarea:focus{
   }
 
 }
+  /* 15 BUTTON CHALLENGE */
+
+#ageButton{
+  cursor:pointer;
+  position:relative;
+  user-select:none;
+
+  box-shadow:
+    0 0 0 4px rgba(255,60,60,.35),
+    0 0 22px 8px rgba(255,40,40,.55);
+
+  animation: agePulse 1.2s infinite ease-in-out;
+}
+
+@keyframes agePulse{
+  0%,100%{
+    box-shadow:
+      0 0 0 3px rgba(255,60,60,.30),
+      0 0 16px 5px rgba(255,40,40,.45);
+  }
+
+  50%{
+    box-shadow:
+      0 0 0 7px rgba(255,60,60,.45),
+      0 0 30px 12px rgba(255,40,40,.65);
+  }
+}
+
+.age-instruction{
+  margin-top:10px;
+  font-size:13px;
+  color:#fff;
+  opacity:.9;
+  letter-spacing:.3px;
+}
+
+.age-message{
+  margin-top:10px;
+  font-size:15px;
+  font-weight:bold;
+  color:#fff;
+  opacity:0;
+  transform:translateY(5px);
+  transition:.35s ease;
+}
+
+.age-message.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+#ageButton.age-tapped{
+  transform:scale(.88);
+}
+
+#ageButton.age-complete{
+  animation:none;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.25),
+    0 0 18px 6px rgba(255,255,255,.35);
+}
 </style>
 <script>
 
