@@ -469,3 +469,154 @@ p{
   font-size:12px;
   opacity:.6;
 }
+</style>
+
+</head>
+
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="birthday-song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-note">♪</div>
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="screen active" id="intro">
+  <div class="garden" id="garden1"></div>
+
+  <div class="content">
+
+    <div class="panda" id="pandaIntro">
+
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+
+      <div class="head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+
+      <div class="body"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+      <div class="leg left"></div>
+      <div class="leg right"></div>
+
+    </div>
+
+    <div class="small-text">A little birthday story...</div>
+
+    <h1>Hello, Marzia.</h1>
+
+    <p>
+      I hope you're doing well.
+      <br>
+      Someone left a little gift here for you.
+    </p>
+
+    <button class="btn" onclick="openGift()">
+      Open the gift
+    </button>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     GIFT
+========================= -->
+
+<section class="screen" id="giftScreen">
+
+  <div class="garden" id="garden2"></div>
+
+  <div class="content">
+
+    <div class="panda" id="pandaGift">
+
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+
+      <div class="head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+
+      <div class="body"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+      <div class="leg left"></div>
+      <div class="leg right"></div>
+
+    </div>
+
+    <div class="gift" onclick="openGiftBox()">
+
+      <div class="gift-lid"></div>
+      <div class="ribbon"></div>
+      <div class="gift-box"></div>
+
+    </div>
+
+    <p>
+      Tap the gift.
+      <br>
+      I think something is waiting inside.
+    </p>
+
+  </div>
+</section>
+
+
+<!-- =========================
+     MEMORY STORY
+========================= -->
+
+<section class="screen" id="memory">
+
+  <div class="garden" id="garden3"></div>
+
+  <div class="content">
+
+    <div class="panda" id="pandaIzu">
+
+      <div class="ear left"></div>
+      <div class="ear right"></div>
+
+      <div class="head">
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+        <div class="nose"></div>
+        <div class="mouth"></div>
+      </div>
+
+      <div class="body"></div>
+      <div class="arm left"></div>
+      <div class="arm right"></div>
+      <div class="leg left"></div>
+      <div class="leg right"></div>
+
+      <div class="izu-tag">IZU</div>
+
+    </div>
+
+    <div class="story-box">
+
+      <p id="storyText"></p>
+
+      <button class="btn" onclick="nextStory()">
+        Continue
+      </button>
+
+    </div>
+
+  </div>
+</section>
