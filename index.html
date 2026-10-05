@@ -2602,6 +2602,39 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
+  /* =========================
+   15 TAP CHALLENGE
+========================= */
+
+let ageTapCount = 0;
+
+function tapAge(){
+
+  ageTapCount++;
+
+  const button = document.getElementById("ageButton");
+  const message = document.getElementById("ageMessage");
+  const instruction = document.getElementById("ageInstruction");
+
+  if(!button) return;
+
+  button.classList.add("age-tapped");
+
+  setTimeout(() => {
+    button.classList.remove("age-tapped");
+  }, 120);
+
+  if(ageTapCount === 8){
+
+    button.classList.add("age-complete");
+
+    instruction.textContent = "Challenge complete.";
+
+    message.textContent = "pak u.. go and study kid";
+    message.classList.add("show");
+
+  }
+}
 </script>
 
 </body>
