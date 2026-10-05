@@ -157,3 +157,14 @@
     transform: scale(1.12);
   }
 </style>
+<script>
+  function nextScene() {
+    document.querySelector(".screen").style.display = "none";
+    document.getElementById("giftScene").style.display = "flex";
+  }
+
+  function openGift() {
+    document.getElementById("giftMessage").textContent =
+      "You found it. But this is only the beginning...";
+  }
+</script>
