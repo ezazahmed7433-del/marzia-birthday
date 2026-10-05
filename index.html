@@ -2114,3 +2114,430 @@ textarea:focus{
 
 }
 </style>
+<script>
+
+/* =====================================
+   GARDEN GENERATOR
+===================================== */
+
+function createGarden(id){
+
+  const garden=document.getElementById(id);
+
+  if(!garden)return;
+
+  for(let i=0;i<35;i++){
+
+    const star=document.createElement("div");
+
+    star.className="star";
+
+    star.style.left=Math.random()*100+"%";
+    star.style.top=Math.random()*65+"%";
+
+    star.style.animationDelay=(Math.random()*3)+"s";
+
+    garden.appendChild(star);
+  }
+
+
+  for(let i=0;i<13;i++){
+
+    const flower=document.createElement("div");
+
+    flower.className="flower";
+
+    flower.style.left=(Math.random()*100)+"%";
+
+    flower.style.bottom=(Math.random()*20)+"%";
+
+    flower.style.transform=
+      "scale("+(0.65+Math.random()*.6)+")";
+
+    flower.style.animationDelay=
+      (Math.random()*3)+"s";
+
+    flower.innerHTML="<span></span><i></i>";
+
+    garden.appendChild(flower);
+  }
+}
+
+
+[
+  "garden1",
+  "garden2",
+  "garden3",
+  "garden4",
+  "garden5",
+  "finalGarden"
+].forEach(createGarden);
+
+
+/* =====================================
+   SCREEN CONTROL
+===================================== */
+
+function showScreen(id){
+
+  document.querySelectorAll(".screen")
+    .forEach(screen=>{
+      screen.classList.remove("active");
+    });
+
+  document.getElementById(id)
+    .classList.add("active");
+
+  window.scrollTo(0,0);
+}
+
+
+/* =====================================
+   MUSIC
+===================================== */
+
+const music=document.getElementById("bgMusic");
+
+function startMusic(){
+
+  if(!music)return;
+
+  music.volume=.35;
+
+  music.play().catch(()=>{
+    /* browser may block autoplay */
+  });
+}
+
+
+/* =====================================
+   PANDA BLINKING
+===================================== */
+
+const pandas=[
+  "pandaIntro",
+  "pandaGift",
+  "pandaIzu",
+  "pandaWish",
+  "finalPanda"
+];
+
+function blinkPanda(id){
+
+  const panda=document.getElementById(id);
+
+  if(!panda)return;
+
+  panda.classList.add("blink");
+
+  setTimeout(()=>{
+    panda.classList.remove("blink");
+  },180);
+}
+
+
+pandas.forEach(id=>{
+
+  setInterval(()=>{
+
+    if(
+      document.getElementById(id)?.closest(".screen")
+      ?.classList.contains("active")
+    ){
+      blinkPanda(id);
+    }
+
+  },3500+Math.random()*2500);
+
+});
+
+
+/* =====================================
+   PANDA TALKING
+===================================== */
+
+function talkPanda(id,duration){
+
+  const panda=document.getElementById(id);
+
+  if(!panda)return;
+
+  panda.classList.add("talking");
+
+  setTimeout(()=>{
+    panda.classList.remove("talking");
+  },duration);
+}
+
+
+/* =====================================
+   INTRO
+===================================== */
+
+function openGift(){
+
+  startMusic();
+
+  showScreen("giftScreen");
+
+  talkPanda("pandaGift",2200);
+}
+
+
+/* =====================================
+   GIFT
+===================================== */
+
+function openGiftBox(){
+
+  const gift=document.querySelector(".gift");
+
+  gift.style.transform="scale(1.15) rotate(3deg)";
+
+  setTimeout(()=>{
+
+    showScreen("memory");
+
+    startStory();
+
+  },700);
+}
+
+
+/* =====================================
+   STORY
+===================================== */
+
+const story=[
+
+"Do you remember when we met?",
+
+"It was somewhere in 2025... in that Messenger group called Extrovert + Introvert.",
+
+"And for some reason, you decided that bullying Ezaz was going to be your first impression.",
+
+"You were trying so hard to make him look like the bad guy while making yourself look like the innocent one.",
+
+"And Ezaz? He mostly just sat there and took it.",
+
+"But then... plot twist.",
+
+"You sent him a friend request on Facebook.",
+
+"And after that, you actually came and apologized for being mean to him.",
+
+"Somehow, that apology turned into conversations...",
+
+"...and those conversations turned into friendship.",
+
+"And now look at you.",
+
+"From trying to bully this idiot in a group chat... to becoming his little sister.",
+
+"You don't even talk every single day. But whenever you two actually start talking... somehow three or four hours disappear.",
+
+"You've shared family problems, future plans, life problems, random nonsense...",
+
+"...and, of course, your legendary relationship cycle.",
+
+"Break up. Complain to Ezaz. Somehow get back together again.",
+
+"And then come back and roast Ezaz for being single.",
+
+"Honestly, Marzia... you're a strange little creature.",
+
+"But underneath all the roasting, fighting, and nonsense... you're someone Ezaz genuinely considers family.",
+
+"You're somehow childish and surprisingly mature at the same time.",
+
+"And even though Ezaz still doesn't remember your ridiculously long full name...",
+
+"...he does remember one thing.",
+
+"Somewhere along the way, you became an important part of his life.",
+
+"So... that's how this weird friendship started.",
+
+"But enough about the past.",
+
+"Because today isn't about how you two met.",
+
+"Today is about you.",
+
+"Your 15th birthday."
+
+];
+
+
+let storyIndex=0;
+
+
+function startStory(){
+
+  storyIndex=0;
+
+  showStory();
+
+}
+
+
+function showStory(){
+
+  const text=document.getElementById("storyText");
+
+  text.style.opacity=0;
+
+  setTimeout(()=>{
+
+    text.textContent=story[storyIndex];
+
+    text.style.opacity=1;
+
+    talkPanda(
+      "pandaIzu",
+      Math.max(1200,story[storyIndex].length*35)
+    );
+
+  },250);
+
+}
+
+
+function nextStory(){
+
+  storyIndex++;
+
+  if(storyIndex>=story.length){
+
+    showScreen("wishScreen");
+
+    return;
+  }
+
+  showStory();
+
+}
+
+
+/* =====================================
+   WISH FORM
+===================================== */
+
+function sendWish(){
+
+  /*
+    The answers are NOT sent anywhere.
+    They are intentionally discarded.
+  */
+
+  document.getElementById("wish1").value="";
+  document.getElementById("wish2").value="";
+  document.getElementById("wish3").value="";
+  document.getElementById("wish4").value="";
+
+  showScreen("wishSent");
+
+  talkPanda("pandaWish",1800);
+}
+
+
+/* =====================================
+   LETTER
+===================================== */
+
+function openLetter(){
+
+  showScreen("letterScreen");
+
+  const paper=document.querySelector(".letter-paper");
+
+  if(paper){
+    paper.scrollTop=0;
+  }
+}
+
+
+function finishLetter(){
+
+  showScreen("birthday");
+
+  startFinalCelebration();
+
+}
+
+
+/* =====================================
+   CONFETTI
+===================================== */
+
+function startFinalCelebration(){
+
+  const container=document.getElementById("confetti");
+
+  container.innerHTML="";
+
+  for(let i=0;i<100;i++){
+
+    const piece=document.createElement("div");
+
+    piece.className="confetti-piece";
+
+    piece.style.left=
+      Math.random()*100+"%";
+
+    piece.style.animationDuration=
+      (2+Math.random()*4)+"s";
+
+    piece.style.animationDelay=
+      (Math.random()*2)+"s";
+
+    piece.style.background=
+      [
+        "#f5b5c8",
+        "#f6d48c",
+        "#b9d6ea",
+        "#d3b6e8",
+        "#ffffff"
+      ][Math.floor(Math.random()*5)];
+
+    piece.style.transform=
+      "rotate("+Math.random()*360+"deg)";
+
+    container.appendChild(piece);
+  }
+
+
+  const panda=document.getElementById("finalPanda");
+
+  if(panda){
+
+    panda.classList.add("talking");
+
+    setTimeout(()=>{
+      panda.classList.remove("talking");
+    },2500);
+
+  }
+
+}
+
+
+/* =====================================
+   STARTUP
+===================================== */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+  createGarden("garden1");
+  createGarden("garden2");
+  createGarden("garden3");
+  createGarden("garden4");
+  createGarden("garden5");
+  createGarden("finalGarden");
+
+});
+
+</script>
+
+</body>
+</html>
