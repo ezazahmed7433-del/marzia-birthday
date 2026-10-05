@@ -2974,7 +2974,57 @@ function pandaSaysYes(){
   },3400);
 
   }
+/* =========================
+   TAP IZU PANDA
+========================= */
 
+const pandaMessages = [
+  "Stop poking me.",
+  "I'm trying to narrate here.",
+  "I saw that.",
+  "Why are you touching me?",
+  "Hehe.",
+  "Can we continue now?",
+  "I'm a narrator, not a toy.",
+  "Excuse me?",
+  "You again?",
+  "Okay... that was unnecessary."
+];
+
+let pandaTapTimer;
+
+function tapPanda(){
+
+  const panda = document.getElementById("pandaIzu");
+  const message = document.getElementById("pandaTapMessage");
+
+  if(!panda || !message) return;
+
+  const randomMessage =
+    pandaMessages[
+      Math.floor(Math.random() * pandaMessages.length)
+    ];
+
+  message.textContent = randomMessage;
+
+  panda.classList.remove("panda-tapped");
+
+  void panda.offsetWidth;
+
+  panda.classList.add("panda-tapped");
+
+  message.classList.add("show");
+
+  clearTimeout(pandaTapTimer);
+
+  pandaTapTimer = setTimeout(()=>{
+    message.classList.remove("show");
+  },1600);
+
+  setTimeout(()=>{
+    panda.classList.remove("panda-tapped");
+  },500);
+  }
 
 /* =====================================
    WISH FORM
