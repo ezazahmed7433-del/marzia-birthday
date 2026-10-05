@@ -2196,6 +2196,63 @@ textarea:focus{
   transform:translateY(0);
 }
 
+  /* =========================
+   BIRTHDAY COUNTDOWN
+========================= */
+
+#birthdayCountdown{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(10,8,15,.92);
+
+  z-index:100;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:opacity .4s ease;
+}
+
+#birthdayCountdown.show{
+  opacity:1;
+}
+
+#countdownNumber{
+  font-size:clamp(90px,30vw,180px);
+
+  font-weight:900;
+
+  color:#fff;
+
+  text-shadow:
+    0 0 20px rgba(255,255,255,.8),
+    0 0 50px rgba(255,100,120,.7);
+
+  animation:countdownPop .9s ease both;
+}
+
+@keyframes countdownPop{
+  0%{
+    transform:scale(.3);
+    opacity:0;
+  }
+
+  45%{
+    transform:scale(1.15);
+    opacity:1;
+  }
+
+  100%{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+  
 #ageButton.age-tapped{
   transform:scale(.88);
 }
